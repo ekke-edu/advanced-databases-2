@@ -34,7 +34,7 @@ Amint megnyílik a VS Code, a jobb alsó sarokban fel fog ugrani egy kék ablak:
 "Folder contains a Dev Container configuration file".
 Kattints a Reopen in Container gombra!
 
-> Megjegyzés: Az első indítás eltarthat néhány percig, amíg a Docker letölti az Oracle adatbázist és beállítja a kiegészítőket. Légy türelemmel!
+> 📓 Megjegyzés: Az első indítás eltarthat néhány percig, amíg a Docker letölti az Oracle adatbázist és beállítja a kiegészítőket. Légy türelemmel!
 
 ### 4. Csatlakozás az Adatbázishoz
 Ha a környezet betöltött, csatlakoznunk kell a háttérben futó Oracle adatbázishoz:
@@ -46,26 +46,27 @@ Ha a környezet betöltött, csatlakoznunk kell a háttérben futó Oracle adatb
 3. Töltsd ki az űrlapot pontosan az alábbi adatokkal:
 
 ```
-Connection Type: Basic
+Connection Type: TNS
 Connection Name: PokemonDB
-Hostname: oracle-db
-Port: 1521
-Service Name: FREEPDB1
+TNS Name: POKEMON_DB
 Username: poke_admin
 Password: pokemon
 ```
-> Pipáld be a Save Password opciót!
+> ✅ Pipáld be a _Save Password_ opciót!
 
-> Kattints a Create Connection gombra.
+> Kattints a _Create Connection_ gombra.
 
 ### 5. Az adatbázis inicializálása
 Ahhoz, hogy elkezdhessük a feladatokat, létre kell hoznunk az edzők és Pokémonok tábláit:
 
 1. A VS Code fájlkezelőjében (bal oldalt) nyisd meg az `init_pokemon_db.sql` fájlt.
 
-2. Kattints jobb gombbal bárhova a kódba, és válaszd az Execute All opciót.
+>❕**Fontos** – Kapcsolat ellenőrzése: Nézz rá a VS Code jobb alsó sarkára. Ott látnod kell a `PokemonDB`-t aktív kapcsolatként. Ha ott esetleg _No connection attached_ szerepel, kattints rá, és válaszd ki a `PokemonDB`-t, különben nem fog tudni futni a kód!
 
-3. A felugró ablakban válaszd ki az imént létrehozott PokemonDB kapcsolatot.
+2. Futtasd le a szkriptet.
 
+> Nyomj F5-öt a billentyűzeten vagy a VS Code jobb felső sarkában lévő _Run Script (F5)_ gombra kattints rá.
 
->A konzolon látnod kell a "Pokédex Adatbázis Sikeresen Inicializálva!" üzenetet. 
+3. A felugró ablakban válaszd ki az imént létrehozott `PokemonDB` kapcsolatot.
+
+> A konzolon / Output ablakban látnod kell a sikeres futást jelző _Pokédex Adatbázis Sikeresen Inicializálva!_ üzenetet.
