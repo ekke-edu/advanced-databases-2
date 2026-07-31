@@ -1,28 +1,34 @@
 version: '3.8'
 
 services:
-  # 1. Maga az Oracle Adatbázis (23c Free)
   oracle-db:
     image: gvenzl/oracle-free:slim-faststart
     container_name: pokemon_oracle_db
     environment:
-      - ORACLE_PASSWORD=pokemon      # Rendszergazda jelszó (SYS, SYSTEM)
-      - APP_USER=poke_admin          # Automatikusan létrehozott hallgatói user
-      - APP_PASSWORD=pokemon         # Hallgatói user jelszava
+      - ORACLE_PASSWORD=pokemon
+      - APP_USER=poke_admin
+      - APP_USER_PASSWORD=pokemon
     ports:
-      - "1521:1521"                  # Port kiajánlása
+      - "1521:1521"
     volumes:
       - oracle-data:/opt/oracle/oradata
+    networks:
+      - pokemon-net  
 
-  # 2. A VS Code munkakörnyezet (Python alapokon a kliens integrációhoz)
   workspace:
     image: mcr.microsoft.com/devcontainers/python:1-3.11-bullseye
     container_name: pokemon_workspace
     volumes:
-      - ..:/workspace:cached         # A projektmappa becsatolása
+      - ..:/workspace:cached
     command: /bin/sh -c "while sleep 1000; do :; done"
     depends_on:
       - oracle-db
+    networks:
+      - pokemon-net
 
 volumes:
   oracle-data:
+
+networks:
+  pokemon-net:
+    driver: bridge

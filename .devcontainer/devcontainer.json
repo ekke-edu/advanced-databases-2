@@ -3,14 +3,38 @@
   "dockerComposeFile": "docker-compose.yml",
   "service": "workspace",
   "workspaceFolder": "/workspace",
-  
+ 
+  "features": {
+    "ghcr.io/devcontainers/features/java:1": {
+      "version": "17" 
+    }
+  },
+
+  "containerEnv": {
+    "TNS_ADMIN": "/workspace/tns",
+    "JAVA_HOME": "/usr/local/sdkman/candidates/java/current"
+  },
+
   "customizations": {
     "vscode": {
       "settings": {
-        "terminal.integrated.defaultProfile.linux": "bash"
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "oracle.sqlDeveloper.javaHome": "/usr/local/sdkman/candidates/java/current",
+        
+        "[sql]": {
+          "editor.defaultFormatter": "Oracle.sql-developer",
+          "editor.formatOnSave": true
+        },
+        "[plsql]": {
+          "editor.defaultFormatter": "Oracle.sql-developer",
+          "editor.formatOnSave": true
+        },
+        "[python]": {
+          "editor.defaultFormatter": "ms-python.python"
+        }
       },
       "extensions": [
-        "Oracle.oracledevtools",
+        "Oracle.sql-developer",
         "ms-python.python"
       ]
     }
