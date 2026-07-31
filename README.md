@@ -70,3 +70,13 @@ Ahhoz, hogy elkezdhessük a feladatokat, létre kell hoznunk az edzők és Poké
 3. A felugró ablakban válaszd ki az imént létrehozott `PokemonDB` kapcsolatot.
 
 > A konzolon / Output ablakban látnod kell a sikeres futást jelző _Pokédex Adatbázis Sikeresen Inicializálva!_ üzenetet.
+
+## 📝 Munka menete a feladatokhoz
+
+Minden hallgatónak a saját munkáját a következő módon kell elkezdenie:
+- Klónozzátok le a branchet a saját gépetekre.
+- Hozzátok létre a saját brancheteket a neptun kódotok alapján.
+- A feladatok leírása az `exercises/tasks.MD` fájlban található.
+- A megoldásokat, az `exercises/tasks.sql` fájlba mentsétek el.
+
+> ❕**Fontos** - Semmiféleképpen ne a main branch-re próbáljátok fel töltelni.
