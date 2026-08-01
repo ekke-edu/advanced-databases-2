@@ -1,6 +1,6 @@
 # Adatbázisrendszerek II. - PL/SQL Gyakorlat (Pokémon Kiadás) 
 
-Üdvözlünk a kurzuson! Ebben a félévben a Kanto régió adatbázisát fogjuk karbantartani és fejleszteni. Hogy ne menjen el az idő az Oracle adatbázis bonyolult telepítésével, a kurzushoz egy **DevContainer** környezetet használunk. Ez azt jelenti, hogy egyetlen gombnyomással felépül a gépeden a teljes fejlesztői környezet!
+Üdvözlünk a kurzuson! Ebben a félévben a Kanto régió adatbázisát és a hozzá tartozó Python (FastAPI) alapú backend rendszert fogjuk karbantartani és fejleszteni. Hogy ne menjen el az idő az Oracle adatbázis és a Python környezet bonyolult telepítésével, a kurzushoz egy DevContainer környezetet használunk. Ez azt jelenti, hogy egyetlen gombnyomással felépül a gépeden a teljes fejlesztői környezet!
 
 ## 🛠️ Előfeltételek
 
@@ -34,42 +34,28 @@ Amint megnyílik a VS Code, a jobb alsó sarokban fel fog ugrani egy kék ablak:
 "Folder contains a Dev Container configuration file".
 Kattints a Reopen in Container gombra!
 
-> 📓 Megjegyzés: Az első indítás eltarthat néhány percig, amíg a Docker letölti az Oracle adatbázist és beállítja a kiegészítőket. Légy türelemmel!
+> 📓 Megjegyzés: Az első indítás eltarthat néhány percig, amíg a Docker letölti az Oracle adatbázist, a Python 3.11-es környezetet és beállítja a kiegészítőket. Légy türelemmel! A csomagkezelő (Poetry) automatikusan feltelepíti a szükséges függőségeket (FastAPI, oracledb, pytest stb.) a konténer indulásakor.
 
-### 4. Csatlakozás az Adatbázishoz
-Ha a környezet betöltött, csatlakoznunk kell a háttérben futó Oracle adatbázishoz:
+### 4. Az adatbázis inicializálása és Tesztelés
+A korábbi félévekkel ellentétben az adatbázis (az edzők és Pokémonok táblái, illetve a PL/SQL kódok) létrehozása most már teljesen automatizált. A Python teszt-infrastruktúránk gondoskodik a tiszta állapotról.
 
-1. A VS Code bal oldali sávjában keress egy új, Adatbázis hengert formázó ikont (Oracle Explorer).
+Nyiss egy új terminált a VS Code-ban (Terminal -> New Terminal), és futtasd le a teszteket:
 
-2. Kattints a + (Add Connection) gombra.
-
-3. Töltsd ki az űrlapot pontosan az alábbi adatokkal:
-
+```bash
+make test
 ```
-Connection Type: TNS
-Connection Name: PokemonDB
-TNS Name: POKEMON_DB
-Username: poke_admin
-Password: pokemon
+
+> ✅ Sikeres futás: A konzolon látnod kell, hogy az inicializáló szkriptek lefutnak, és a végpontok tesztjei (köztük a biztonságos ORM/Nyers SQL és a sebezhető SQL injection végpont) "PASSED" eredménnyel zárulnak.
+
+### 5. Az API szerver indítása
+Hogy lásd, min is fogunk dolgozni, indítsd el a FastAPI szervert lokálisan:
+
+```bash
+fastapi dev app/main.py
 ```
-> ✅ Pipáld be a _Save Password_ opciót!
+> (Ha a fastapi parancs nem működne, használd a poetry run uvicorn app.main:app --reload parancsot!)
 
-> Kattints a _Create Connection_ gombra.
-
-### 5. Az adatbázis inicializálása
-Ahhoz, hogy elkezdhessük a feladatokat, létre kell hoznunk az edzők és Pokémonok tábláit:
-
-1. A VS Code fájlkezelőjében (bal oldalt) nyisd meg az `init_pokemon_db.sql` fájlt.
-
->❕**Fontos** – Kapcsolat ellenőrzése: Nézz rá a VS Code jobb alsó sarkára. Ott látnod kell a `PokemonDB`-t aktív kapcsolatként. Ha ott esetleg _No connection attached_ szerepel, kattints rá, és válaszd ki a `PokemonDB`-t, különben nem fog tudni futni a kód!
-
-2. Futtasd le a szkriptet.
-
-> Nyomj F5-öt a billentyűzeten vagy a VS Code jobb felső sarkában lévő _Run Script (F5)_ gombra kattints rá.
-
-3. A felugró ablakban válaszd ki az imént létrehozott `PokemonDB` kapcsolatot.
-
-> A konzolon / Output ablakban látnod kell a sikeres futást jelző _Pokédex Adatbázis Sikeresen Inicializálva!_ üzenetet.
+> 🌐 Próbáld ki! Nyisd meg a böngésződben a http://localhost:8000/docs címet. Itt egy interaktív Swagger UI felület fogad, ahol kattintgatva kipróbálhatod az adatbázishoz kapcsolódó API végpontokat!
 
 ## 📝 Munka menete a feladatokhoz
 
@@ -77,6 +63,7 @@ Minden hallgatónak a saját munkáját a következő módon kell elkezdenie:
 - Klónozzátok le a branchet a saját gépetekre.
 - Hozzátok létre a saját brancheteket a neptun kódotok alapján.
 - A feladatok leírása az `exercises/tasks.MD` fájlban található.
-- A megoldásokat, az `exercises/tasks.sql` fájlba mentsétek el.
+- A fejlesztéseket a megfelelő Python fájlokban (pl. az `app/` mappában) és SQL fájlokban kell elvégeznetek.
+- Folyamatosan ellenőrizzétek a kód működését a `make test` paranccsal!
 
-> ❕**Fontos** - Semmiféleképpen ne a main branch-re próbáljátok fel töltelni.
+> ❕**Fontos** - Semmiféleképpen ne a main vagy feature/pokedex-python-api branch-re próbáljátok fel töltelni.
