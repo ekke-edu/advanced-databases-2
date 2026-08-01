@@ -4,10 +4,14 @@ install:
 	pip install -r requirements.txt
 
 run:
-	uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+	uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
 
 test:
-	pytest .
+	pytest -v -s
 
 clean:
-	rm -rf __pycache__ .pytest_cache
+	find . -type d -name "__pycache__" -exec rm -rf {} +
+	rm -rf .pytest_cache
+
+benchmark:
+	python scripts/benchmark.py
