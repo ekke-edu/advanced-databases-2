@@ -71,7 +71,29 @@ Ahhoz, hogy elkezdhessük a feladatokat, létre kell hoznunk az edzők és Poké
 
 > A konzolon / Output ablakban látnod kell a sikeres futást jelző _Pokédex Adatbázis Sikeresen Inicializálva!_ üzenetet.
 
-## 📝 Munka menete a feladatokhoz
+## Adatbázis ellenőrző script
+
+Az adatbázis működésének gyors tesztelésére a repository-ban található a [db_checker.py](db_checker.py) fájl.
+
+### Futtatás
+A DevContainerben a következő paranccsal futtathatod:
+
+```bash
+python db_checker.py
+```
+
+Ha más környezeti változókat használsz, akkor előtte beállíthatod őket:
+
+```bash
+DB_USER=poke_admin DB_PASSWORD=pokemon DB_DSN=localhost:1521/POKEMON_DB python3 db_checker.py
+```
+
+Ha a script sikeresen kapcsolódik, a következő jellegű üzenetet fogod látni:
+- ✅ SIKERES CSATLAKOZÁS AZ ORACLE ADATBÁZISHOZ!
+- 📦 Adatbázis verzió
+- 🚀 A környezet készen áll a fejlesztésre!
+
+##  Munka menete a feladatokhoz
 
 Minden hallgatónak a saját munkáját a következő módon kell elkezdenie:
 - Klónozzátok le a branchet a saját gépetekre.

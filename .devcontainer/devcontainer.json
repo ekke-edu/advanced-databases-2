@@ -10,7 +10,10 @@
   },
   "containerEnv": {
     "TNS_ADMIN": "/workspace/tns",
-    "JAVA_HOME": "/usr/local/sdkman/candidates/java/current"
+    "JAVA_HOME": "/usr/local/sdkman/candidates/java/current",
+    "DB_USER": "poke_admin",
+    "DB_PASSWORD": "pokemon",
+    "DB_DSN": "oracle-db:1521/FREEPDB1"
   },
   "customizations": {
     "vscode": {
