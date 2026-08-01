@@ -4,12 +4,15 @@ import oracledb
 DB_USER = os.environ.get("DB_USER")
 DB_PASSWORD = os.environ.get("DB_PASSWORD")
 DB_DSN = os.environ.get("DB_DSN")
+TNS_ADMIN = os.environ.get("TNS_ADMIN")
 
 
 def test_database_connection() -> None:
     print("🔍 Adatbázis kapcsolat ellenőrzése indítva...\n")
     print(f"   Felhasználó: {DB_USER}")
-    print(f"   DSN: {DB_DSN}\n")
+    print(f"   TNS alias: {DB_DSN}")
+    print(f"   TNS_ADMIN: {TNS_ADMIN}\n")
+    print("💡 A kapcsolat a tnsnames.ora fájlban definiált TNS alias segítségével jön létre.\n")
 
     try:
         with oracledb.connect(user=DB_USER, password=DB_PASSWORD, dsn=DB_DSN) as conn:
@@ -30,6 +33,7 @@ def test_database_connection() -> None:
         print("❌ ADATBÁZIS HIBA:")
         print(f"   Kód: {getattr(error, 'code', 'ismeretlen')}")
         print(f"   Üzenet: {getattr(error, 'message', str(error))}")
+        print("\n💡 Ellenőrizd a tnsnames.ora fájlt és a TNS_ADMIN beállítást.")
 
 
 if __name__ == "__main__":

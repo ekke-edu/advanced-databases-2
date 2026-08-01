@@ -82,10 +82,10 @@ A DevContainerben a következő paranccsal futtathatod:
 python db_checker.py
 ```
 
-Ha más környezeti változókat használsz, akkor előtte beállíthatod őket:
+Ha más környezeti változókat használsz, akkor előtte beállíthatod őket. A script alapértelmezésben a [tns/tnsnames.ora](tns/tnsnames.ora) alapján a `POKEMON_DB` TNS alias-t használja:
 
 ```bash
-DB_USER=poke_admin DB_PASSWORD=pokemon DB_DSN=localhost:1521/POKEMON_DB python3 db_checker.py
+DB_USER=poke_admin DB_PASSWORD=pokemon DB_DSN=POKEMON_DB python3 db_checker.py
 ```
 
 Ha a script sikeresen kapcsolódik, a következő jellegű üzenetet fogod látni:
