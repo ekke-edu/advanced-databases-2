@@ -55,6 +55,12 @@ fastapi dev app/main.py
 ```
 > (Ha a fastapi parancs nem működne, használd a poetry run uvicorn app.main:app --reload parancsot!)
 
+Esetleg használhatod a korábban ismert `make` parancsot is, amit a `Makefile`-ba hoztam létre:
+
+```bash
+make run
+```
+
 > 🌐 Próbáld ki! Nyisd meg a böngésződben a http://localhost:8000/docs címet. Itt egy interaktív Swagger UI felület fogad, ahol kattintgatva kipróbálhatod az adatbázishoz kapcsolódó API végpontokat!
 
 ## 📝 Munka menete a feladatokhoz
@@ -67,3 +73,22 @@ Minden hallgatónak a saját munkáját a következő módon kell elkezdenie:
 - Folyamatosan ellenőrizzétek a kód működését a `make test` paranccsal!
 
 > ❕**Fontos** - Semmiféleképpen ne a main vagy feature/pokedex-python-api branch-re próbáljátok fel töltelni.
+
+
+## 📈 Teljesítménytesztek
+
+A teljesítményteszteket a benchmark szkripttel futtathatod. Először indítsd el a FastAPI szervert, majd egy új terminálban futtasd a benchmarkot:
+
+```bash
+make run
+```
+
+```bash
+make benchmark
+```
+
+A script 100 darab kérést küld minden vizsgált végpontra, és az alábbi formában mutatja az eredményeket:
+- összes idő
+- átlagos idő/kérés miliszekundumban
+
+Ha a szerver nem fut, a benchmark értesítést ad, hogy előbb indítsd el a `make run` parancsot.
