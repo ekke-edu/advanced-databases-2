@@ -10,7 +10,10 @@
   },
   "containerEnv": {
     "TNS_ADMIN": "/workspace/tns",
-    "JAVA_HOME": "/usr/local/sdkman/candidates/java/current"
+    "JAVA_HOME": "/usr/local/sdkman/candidates/java/current",
+    "DB_USER": "poke_admin",
+    "DB_PASSWORD": "pokemon",
+    "DB_DSN": "oracle-db:1521/FREEPDB1"
   },
   "customizations": {
     "vscode": {
@@ -26,18 +29,24 @@
           "editor.formatOnSave": true
         },
         "[python]": {
-          "editor.defaultFormatter": "ms-python.python"
+          "editor.defaultFormatter": "ms-python.black-formatter",
+          "editor.formatOnSave": true,
+          "python.analysis.typeCheckingMode": "basic"
         }
       },
       "extensions": [
         "Oracle.sql-developer",
-        "ms-python.python"
+        "ms-python.python",
+        "ms-python.black-formatter",
+        "ms-python.vscode-pylance",
+        "ms-vscode.makefile-tools"
       ]
     }
   },
   "forwardPorts": [
-    1521
+    1521,
+    8000
   ],
-  "postCreateCommand": "pip install oracledb",
+  "postCreateCommand": "pip install -r /workspace/requirements.txt",
   "remoteUser": "vscode"
 }
