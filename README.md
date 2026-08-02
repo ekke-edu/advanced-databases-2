@@ -72,7 +72,7 @@ Minden hallgatónak a saját munkáját a következő módon kell elkezdenie:
 - A fejlesztéseket a megfelelő Python fájlokban (pl. az `app/` mappában) és SQL fájlokban kell elvégeznetek.
 - Folyamatosan ellenőrizzétek a kód működését a `make test` paranccsal!
 
-> ❕**Fontos** - Semmiféleképpen ne a main vagy feature/pokedex-python-api branch-re próbáljátok fel töltelni.
+> ❕**Fontos** - Semmiféleképpen ne a main vagy feature/pokedex-python-api branch-re próbáljátok fel töltelni. A `finals` branch-en hozzatok létre saját mappát a neptun kódotok alapján.
 
 
 ## 📈 Teljesítménytesztek
