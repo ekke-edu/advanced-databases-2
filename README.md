@@ -97,7 +97,7 @@ Ha a script sikeresen kapcsolódik, a következő jellegű üzenetet fogod látn
 
 Minden hallgatónak a saját munkáját a következő módon kell elkezdenie:
 - Klónozzátok le a branchet a saját gépetekre.
-- Hozzátok létre a saját brancheteket a neptun kódotok alapján.
+- Hozzátok létre a `finals` repository alatt saját mappátokat a neptun kódotok alapján.
 - A feladatok leírása az `exercises/tasks.MD` fájlban található.
 - A megoldásokat, az `exercises/tasks.sql` fájlba mentsétek el.
 
