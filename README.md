@@ -2,6 +2,8 @@
 
 Üdvözlünk a kurzuson! Ebben a félévben a Kanto régió adatbázisát fogjuk karbantartani és fejleszteni. Hogy ne menjen el az idő az Oracle adatbázis bonyolult telepítésével, a kurzushoz egy **DevContainer** környezetet használunk. Ez azt jelenti, hogy egyetlen gombnyomással felépül a gépeden a teljes fejlesztői környezet!
 
+További információ [itt](https://io.uni-eszterhazy.hu/downloadCourseInfo/101966)
+
 ## 🛠️ Előfeltételek
 
 Mielőtt elkezdenéd, győződj meg róla, hogy a gépeden telepítve vannak az alábbiak:
