@@ -1,3 +1,8 @@
+![Oracle](https://img.shields.io/badge/Oracle-F80000?style=flat&logo=oracle&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat&logo=docker&logoColor=white)
+![DevContainers](https://img.shields.io/badge/DevContainers-0078D4?style=flat&logo=visualstudiocode&logoColor=white)
+
 # Adatbázisrendszerek II. - PL/SQL Gyakorlat (Pokémon Kiadás) 
 
 Üdvözlünk a kurzuson! Ebben a félévben a Kanto régió adatbázisát fogjuk karbantartani és fejleszteni. Hogy ne menjen el az idő az Oracle adatbázis bonyolult telepítésével, a kurzushoz egy **DevContainer** környezetet használunk. Ez azt jelenti, hogy egyetlen gombnyomással felépül a gépeden a teljes fejlesztői környezet!
