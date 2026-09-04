@@ -1,3 +1,11 @@
+![Oracle](https://img.shields.io/badge/Oracle-F80000?style=flat&logo=oracle&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat&logo=docker&logoColor=white)
+![DevContainers](https://img.shields.io/badge/DevContainers-0078D4?style=flat&logo=visualstudiocode&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=flat&logo=fastapi)
+![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-D71F00?style=flat&logo=sqlalchemy&logoColor=white)
+![Pytest](https://img.shields.io/badge/Pytest-0A9EDC?style=flat&logo=pytest&logoColor=white)
+
 # Adatbázisrendszerek II. - PL/SQL Gyakorlat (Pokémon Kiadás) 
 
 Üdvözlünk a kurzuson! Ebben a félévben a Kanto régió adatbázisát és a hozzá tartozó Python (FastAPI) alapú backend rendszert fogjuk karbantartani és fejleszteni. Hogy ne menjen el az idő az Oracle adatbázis és a Python környezet bonyolult telepítésével, a kurzushoz egy DevContainer környezetet használunk. Ez azt jelenti, hogy egyetlen gombnyomással felépül a gépeden a teljes fejlesztői környezet!
