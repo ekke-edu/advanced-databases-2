@@ -68,3 +68,7 @@ Sikeres kimenet:
 - ✅ SIKERES CSATLAKOZÁS AZ ORACLE ADATBÁZISHOZ!
 - 📦 Adatbázis verzió
 - 🚀 A környezet készen áll a fejlesztésre!
+
+## Licenc
+
+Ez a projekt az MIT Licenc alatt áll – a részletekért válaszd a [LICENSE](LICENSE) fájlt.
