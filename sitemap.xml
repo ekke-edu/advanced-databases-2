@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+    <url>
+        <loc>https://ekke-edu.github.io/advanced-databases-2/</loc>
+        <lastmod>2026-09-09</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="hu" href="https://ekke-edu.github.io/advanced-databases-2/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://ekke-edu.github.io/advanced-databases-2/en/"/>
+    </url>
+    <url>
+        <loc>https://ekke-edu.github.io/advanced-databases-2/01-plsql/</loc>
+        <lastmod>2026-09-09</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="hu" href="https://ekke-edu.github.io/advanced-databases-2/01-plsql/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://ekke-edu.github.io/advanced-databases-2/en/01-plsql/"/>
+    </url>
+    <url>
+        <loc>https://ekke-edu.github.io/advanced-databases-2/02-fastapi/</loc>
+        <lastmod>2026-09-09</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="hu" href="https://ekke-edu.github.io/advanced-databases-2/02-fastapi/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://ekke-edu.github.io/advanced-databases-2/en/02-fastapi/"/>
+    </url>
+    <url>
+        <loc>https://ekke-edu.github.io/advanced-databases-2/en/</loc>
+        <lastmod>2026-09-09</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://ekke-edu.github.io/advanced-databases-2/en/"/>
+        <xhtml:link rel="alternate" hreflang="hu" href="https://ekke-edu.github.io/advanced-databases-2/"/>
+    </url>
+    <url>
+        <loc>https://ekke-edu.github.io/advanced-databases-2/en/01-plsql/</loc>
+        <lastmod>2026-09-09</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://ekke-edu.github.io/advanced-databases-2/en/01-plsql/"/>
+        <xhtml:link rel="alternate" hreflang="hu" href="https://ekke-edu.github.io/advanced-databases-2/01-plsql/"/>
+    </url>
+    <url>
+        <loc>https://ekke-edu.github.io/advanced-databases-2/en/02-fastapi/</loc>
+        <lastmod>2026-09-09</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://ekke-edu.github.io/advanced-databases-2/en/02-fastapi/"/>
+        <xhtml:link rel="alternate" hreflang="hu" href="https://ekke-edu.github.io/advanced-databases-2/02-fastapi/"/>
+    </url>
+</urlset>
