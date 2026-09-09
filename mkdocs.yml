@@ -1,0 +1,41 @@
+site_name: Adatbázisrendszerek II.
+site_description: PL/SQL és FastAPI alapú adatbázisrendszerek kurzus
+site_url: https://ekke-edu.github.io/advanced-databases-2/
+
+theme: 
+  name: material
+  language: hu
+  features:
+    - navigation.tabs
+    - navigation.top
+
+extra: 
+  alternate:
+    - name: Magyar
+      link: /advanced-databases-2/
+      lang: hu
+    - name: English
+      link: /advanced-databases-2/en/
+      lang: en
+
+nav:
+  - Kezdőlap: index.md
+  - PL/SQL: 01-plsql.md
+  - FastAPI: 02-fastapi.md
+
+plugins:
+  - search
+  - i18n:
+      docs_structure: suffix
+      languages:
+        - locale: hu
+          name: Magyar
+          default: true
+          build: true
+        - locale: en
+          name: English
+          build: true
+          nav_translations:
+            Kezdőlap: Home
+            PL/SQL: PL/SQL Practice
+            FastAPI: FastAPI Practice
