@@ -1,0 +1,5 @@
+1. Hozd létre az `edzok` táblát! Tartalmazzon egy `id` oszlopot (legyen elsődleges kulcs, automatikusan generált sorszámmal), egy `nev` (szöveg, max 50 karakter) és egy `regio` (szöveg, max 50 karakter) oszlopot!
+2. Hozd létre a `pokemonok` táblát! Oszlopai: `id` (szám, elsődleges kulcs), `nev` (szöveg, max 50), `tipus` (szöveg, max 50) és `alap_hp` (szám). Itt az `id` **ne** legyen automatikusan generált, mert a hivatalos Pokédex számokat fogjuk használni!
+3. Hozd létre a `befogasok` kapcsolótáblát! Oszlopai: `id` (automatikusan generált elsődleges kulcs), `szint` (szám), valamint két idegen kulcs: `edzo_id` (hivatkozzon az edzok táblára) és `pokemon_id` (hivatkozzon a pokemonok táblára).
+4. Módosítsd az `edzok` tábla szerkezetét (`ALTER TABLE`)! Adj hozzá két új oszlopot: `kezdes_eve` (szám) és `tapasztalat_pont` (szám).
+5. Hozz létre egy `teszt_tabla` nevű táblát egyetlen tetszőleges oszloppal, majd azonnal töröld is le a rendszerből (`DROP TABLE`)!

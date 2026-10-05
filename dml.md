@@ -1,0 +1,5 @@
+1. Szúrj be (`INSERT`) egy új edzőt az `edzok` táblába! A neve legyen 'Ash Ketchum', régiója 'Kanto', kezdés éve 1997, tapasztalati pontja pedig 1500. (Az `id` oszlopot ne add meg, az automatikusan generálódik!)
+2. Szúrj be három Pokémont a `pokemonok` táblába egyetlen tranzakción belül: Bulbasaur (id: 1, Fű, HP: 45), Charmander (id: 4, Tűz, HP: 39) és Pikachu (id: 25, Elektromos, HP: 35). Véglegesítsd a módosításokat a rendszerben!
+3. Rögzítsd a `befogasok` táblába, hogy Ash (akinek az `id`-ja 1) befogta Pikachut (akinek az `id`-ja 25), és a Pokémon szintje 50-es! Véglegesítsd!
+4. Módosítsd (`UPDATE`) Ash Ketchum tapasztalati pontját! Növeld meg a jelenlegi értékét 500-zal. Véglegesítsd!
+5. Kezdj egy új tranzakciót! Töröld (`DELETE`) Ash Ketchum befogását a `befogasok` táblából. Kérdezd le a táblát, hogy lásd, eltűnt. Ezután vonjad vissza a tranzakciót (`ROLLBACK`), és ellenőrizd újra a táblát, hogy a törölt adat visszatért-e!
