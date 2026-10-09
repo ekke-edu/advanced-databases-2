@@ -3,20 +3,22 @@ name: Deploy Slidev to GitHub Pages
 on:
   push:
     branches:
-      - presentation 
+      - presentation
+
+permissions:
   contents: read
   pages: write
   id-token: write
 
 concurrency:
-  group: "pages"
+  group: pages
   cancel-in-progress: false
 
 jobs:
   deploy:
     environment:
       name: github-pages
-      url: ${{ steps:deployment.outputs.page_url }}
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Presentation Branch
@@ -26,20 +28,18 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
+          cache: npm
 
       - name: Install dependencies
         run: npm ci
 
       - name: Build Slidev
-        run: |
-          # A --base flag biztosítja, hogy a generált HTML-ben a JS/CSS fájlok jó helyre mutassanak
-          npx slidev build --base /${{ github.event.repository.name }}/
+        run: npx slidev build --base "/${{ github.event.repository.name }}/"
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './dist'
+          path: ./dist
 
       - name: Deploy to GitHub Pages
         id: deployment
