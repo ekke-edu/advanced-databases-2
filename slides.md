@@ -4,17 +4,20 @@ routerMode: hash
 ---
 
 <div class="absolute inset-0 flex flex-col font-sans">
-  <div class="w-full h-[55%] bg-[#1a2a5a] flex items-start justify-center pt-24 relative">
+  <div class="w-full h-[55%] bg-[#1a2a5a] flex items-start justify-center items-center pt-24 relative flex-col">
     <h1 class="text-6xl font-bold text-white tracking-wide z-10 m-0 border-none text-center">
       <strong>Adatbázisrendszerek II.</strong>
     </h1>
+    <h2 class="text-xl">
+      <strong>LBT_IM719G2</strong>
+    </h2>
   </div>
-  <div class="w-full h-[45%] bg-white flex flex-col items-center justify-start pt-5 relative text-[#1a2a5a]">
-    <p class="text-3xl font-bold mt-2 mb-1">Szilvási István Péter</p>
-    <p class="text-xl mt-4 opacity-80 m-0 font-bold">LBT_IM719G2 · Eger, 2026</p>
+  <div class="w-full h-[45%] bg-white flex flex-col items-center justify-start pt-6 relative text-[#1a2a5a]">
+    <p class="text-3xl font-bold mt-2 mb-1">SQL és PL/SQL gyakorlat</p>
+    <p class="text-xl mt-4 opacity-80 m-0 font-bold">Szilvási István Péter</p>
   </div>
   <div class="absolute top-[53.3%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center z-20 w-full">
-    <div class="i-carbon-data-base text-6xl text-[#1a2a5a]" />
+    <img src="/assets/cover.png" class="h-24" />
     <div class="w-[60%] border-b-2 border-white my-3"></div>
   </div>
 </div>
@@ -22,44 +25,47 @@ routerMode: hash
 ---
 
 ::header::
-Tematika
+TÉMAKÖRÖK
 ::default::
 
 <div class="grid grid-cols-3 gap-5 mt-5">
   <div class="bg-white/5 p-6 rounded-xl border border-[#1a2a5a]/20">
-    <div class="text-4xl font-bold text-[#1a2a5a]">01</div><h3 class="text-xl font-bold">DQL · Lekérdezés</h3>
-    <p class="opacity-80">A HR sémában dolgozunk. SELECT, szűrés, JOIN, csoportosítás és rendezés segítségével nyerünk ki információt.</p>
+    <div class="text-4xl font-bold text-[#1a2a5a]">01</div><h3 class="text-xl font-bold">DQL</h3>
+    <p class="opacity-80">A HR sémában vettük át a Data Query Language alapjait , vagyis a 
+    <code style="background-color: #1a2a5a;" class="bg-[#1a2a5a] text-white">SELECT</code> és 
+    <code style="background-color: #1a2a5a;" class="bg-[#1a2a5a] text-white">JOIN</code> utasításokat, a csoportosításokat és az aggregálást, hogy a nyers adatokból riportokat készítsünk.</p>
   </div>
   <div class="bg-white/5 p-6 rounded-xl border border-[#1a2a5a]/20">
-    <div class="text-4xl font-bold text-[#1a2a5a]">02</div><h3 class="text-xl font-bold">DDL + DML · Adatkezelés</h3>
-    <p class="opacity-80">Saját sémában hozunk létre táblákat és kulcsokat, majd INSERT, UPDATE és DELETE utasításokkal kezeljük az adatokat.</p>
+    <div class="text-4xl font-bold text-[#1a2a5a]">02</div><h3 class="text-xl font-bold">DDL ÉS DML</h3>
+    <p class="opacity-80">Létrehozzuk a saját adattábláinkat, beállítjuk az elsődleges és idegen kulcsokat, majd adatok beszúrásával (<code style="background-color: #1a2a5a;" class="bg-[#1a2a5a] text-white">INSERT</code>), módosításával (<code style="background-color: #1a2a5a;" class="bg-[#1a2a5a] text-white">UPDATE</code>) és törlésével (<code style="background-color: #1a2a5a;" class="bg-[#1a2a5a] text-white">DELETE</code>) foglalkozunk, tranzakcióvezérléssel karöltve.</p>
   </div>
   <div class="bg-white/5 p-6 rounded-xl border border-[#1a2a5a]/20">
-    <div class="text-4xl font-bold text-[#1a2a5a]">03</div><h3 class="text-xl font-bold">PL/SQL · Programozás</h3>
-    <p class="opacity-80">Változókkal, elágazásokkal, ciklusokkal, kivételekkel és adatbázis-objektumokkal automatizálunk.</p>
+    <div class="text-4xl font-bold text-[#1a2a5a]">03</div><h3 class="text-xl font-bold">PL/SQL</h3>
+    <p class="opacity-80">Amikor az SQL már nem elég: bevezetjük a változókat, ciklusokat és hibakezelést. Megtanuljuk a tárolt eljárások, függvények és triggerek írását az üzleti folyamatok automatizálására.</p>
   </div>
 </div>
-<div class="mt-8 flex items-center justify-center gap-3 text-xl text-[#1a2a5a] font-bold"><span>DQL</span><div class="i-carbon-arrow-right"/><span>DDL + DML</span><div class="i-carbon-arrow-right"/><span>PL/SQL</span></div>
 
 ---
 
 ::header::
-1. DQL a HR sémában
+DQL
 ::default::
 
 <div class="grid grid-cols-2 gap-8 items-center">
   <div>
-    <h3 class="text-2xl font-bold text-[#1a2a5a]">Vállalati adatok, összefüggések</h3>
-    <p class="opacity-80">A HR séma dolgozókat, részlegeket, munkaköröket és fizetéstörténetet tartalmaz. Meglévő adatokból keresünk válaszokat.</p>
+    <h3 class="text-2xl font-bold text-[#1a2a5a]">A lekérdezés felépítése</h3>
+    <p class="opacity-80">A parancsok nem módosítják az adatbázist, csak eredményhalmazokat állítanak elő. A végrehajtás logikája kötött:</p>
     <ul class="space-y-2 mt-5">
-      <li class="flex items-center"><div class="i-carbon-checkmark text-green mr-3"/>SELECT és WHERE: kiválasztás, szűrés</li>
-      <li class="flex items-center"><div class="i-carbon-checkmark text-green mr-3"/>JOIN: kapcsolódó táblák összefűzése</li>
-      <li class="flex items-center"><div class="i-carbon-checkmark text-green mr-3"/>GROUP BY: csoportosítás és összesítés</li>
-      <li class="flex items-center"><div class="i-carbon-checkmark text-green mr-3"/>ORDER BY: áttekinthető eredmény</li>
+      <li class="flex items-center"><div class="i-carbon-checkmark text-green mr-3"/><strong>SELECT:</strong> Kijelöli a megjelenítendő oszlopokat</li>
+      <li class="flex items-center"><div class="i-carbon-checkmark text-green mr-3"/><strong>FROM, JOIN:</strong> Megadja a forrástáblákat és kapcsolataikat</li>
+      <li class="flex items-center"><div class="i-carbon-checkmark text-green mr-3"/><strong>WHERE:</strong> Sor szintű szűrés csoportosítás előtt</li>
+      <li class="flex items-center"><div class="i-carbon-checkmark text-green mr-3"/><strong>GROUP BY:</strong> Összesítésekhez csoportosít.</li>
+      <li class="flex items-center"><div class="i-carbon-checkmark text-green mr-3"/><strong>HAVING:</strong> Kiszűri a nem megfelelő csoportokat.</li>
+      <li class="flex items-center"><div class="i-carbon-checkmark text-green mr-3"/><strong>ORDER BY:</strong> Rendezi a végső listát.</li>
     </ul>
   </div>
-  <div class="bg-[#1a2a5a] text-white rounded-xl p-5 text-sm leading-relaxed">
-<pre v-pre class="text-white text-sm leading-relaxed">
+  <div class="bg-slate-100 text-slate-900 border border-slate-300 rounded-xl p-5 text-sm leading-relaxed">
+<pre v-pre class="text-slate-900 text-sm leading-relaxed">
 SELECT d.department_name,
        COUNT(*) AS employee_count,
        ROUND(AVG(e.salary), 0) AS avg_salary
@@ -71,79 +77,84 @@ GROUP BY d.department_name
 HAVING COUNT(*) >= 3
 ORDER BY avg_salary DESC;
 </pre>
-    <p class="text-white/70 text-xs mt-2">Egy kérdés, több tábla, csoportosított válasz.</p>
   </div>
 </div>
 
 ---
 
 ::header::
-Lekérdezés és tiszta kód
+ALIAS
 ::default::
 
 <div class="grid grid-cols-2 gap-8">
   <div class="space-y-4">
-    <h3 class="text-2xl font-bold text-[#1a2a5a]">A jó eredmény önmagában kevés</h3>
-    <p class="opacity-80">A lekérdezést másnak is el kell tudnia olvasni, ellenőrizni és később módosítani.</p>
+    <p class="opacity-80">Az aliasok rövidebbé teszik a kódot</p>
     <ul class="space-y-2">
-      <li class="flex items-start"><div class="i-carbon-checkmark text-green mr-3 mt-1"/><span><strong>Aliasok:</strong> e és d jelöli a táblákat; az oszlopok eredete mindig világos.</span></li>
-      <li class="flex items-start"><div class="i-carbon-checkmark text-green mr-3 mt-1"/><span><strong>Formázás:</strong> kulcsszavak nagybetűvel, logikai blokkok külön sorban.</span></li>
-      <li class="flex items-start"><div class="i-carbon-checkmark text-green mr-3 mt-1"/><span><strong>Kifejező nevek:</strong> az alias mondja el, mit jelent a számított oszlop.</span></li>
+      <li class="flex items-start"><div class="i-carbon-checkmark text-green mr-3 mt-1"/><span><strong>Tábla alias (pl. e és d):</strong> Rövidíti a hivatkozásokat. Több tábla összekapcsolásakor (JOIN) kötelező használni, hogy megelőzzük a kétértelmű oszlopnevek miatti hibákat.</span></li>
+      <li class="flex items-start"><div class="i-carbon-checkmark text-green mr-3 mt-1"/><span><strong>Oszlop alias (pl. AS reszleg_neve):</strong> Kifejező nevet ad a számított, aggregált mezőknek a végeredményben.</span></li>
     </ul>
+    <p class="opacity-80 mt-4"><strong>Formázás:</strong> Az SQL nem érzékeny a kis/nagybetűkre, de a kulcsszavakat (SELECT, FROM) nagybetűvel, a mezőket kisbetűvel írjuk, és behúzásokkal tagoljuk a logikát.</p>
   </div>
-  <div class="bg-[#1a2a5a] text-white rounded-xl p-6">
-<pre v-pre class="text-white text-sm leading-relaxed">
+  <div class="bg-slate-100 text-slate-900 border border-slate-300 rounded-xl p-6">
+<pre v-pre class="text-slate-900 text-sm leading-relaxed">
 SELECT e.first_name,
        e.last_name,
-       d.department_name
+       d.department_name AS reszleg_neve
 FROM employees e
 JOIN departments d
   ON d.department_id = e.department_id
 WHERE e.salary > 8000
 ORDER BY e.last_name;
 </pre>
-    <p class="text-white/70 text-sm">A tiszta formázás a hibakeresésnél és a csapatmunkában is időt takarít meg.</p>
   </div>
 </div>
 
 ---
 
 ::header::
-2. Saját séma, saját homokozó
+SÉMA
 ::default::
 
 <div class="grid grid-cols-2 gap-8 items-center">
   <div>
-    <h3 class="text-2xl font-bold text-[#1a2a5a]">Mi az a séma?</h3>
-    <p class="opacity-80">Az Oracle-ben a séma egy felhasználóhoz tartozó adatbázis-objektumok névtere. A saját sémában dolgozva a tábláink nem keverednek a csoporttársak objektumaival.</p>
-    <p class="opacity-80">Itt építjük fel és próbáljuk ki a saját megoldásainkat, kontrollált környezetben.</p>
+    <p class="opacity-80">A séma egy adott felhasználóhoz tartozó névtér. Tartalmazza a felhasználó összes saját objektumát (táblák, triggerek stb.).</p>
+    <p class="opacity-80 mt-4">Mindenki saját sémában dolgozik, ami garantálja, hogy a kódjaitok nem ütköznek. Ha ketten is létrehoztok egy <code style="background-color: #1a2a5a;" class="bg-[#1a2a5a] text-white">EDZOK</code> táblát, azok fizikailag különállóak lesznek (pl. <code style="background-color: #1a2a5a;" class="bg-[#1a2a5a] text-white">HALLGATO_A.EDZOK</code> és <code style="background-color: #1a2a5a;" class="bg-[#1a2a5a] text-white">HALLGATO_B.EDZOK</code>). Itt bátran tesztelhetitek a DDL és DML utasításokat.</p>
   </div>
   <div class="grid grid-cols-2 gap-4 text-center">
-    <div class="bg-white/5 p-5 rounded-xl border border-[#1a2a5a]/20"><div class="i-carbon-user text-4xl mx-auto text-[#1a2a5a]"/><strong>Hallgató A</strong><p class="m-0 text-sm opacity-70">saját séma</p><code>EDZOK</code></div>
-    <div class="bg-white/5 p-5 rounded-xl border border-[#1a2a5a]/20"><div class="i-carbon-user text-4xl mx-auto text-[#1a2a5a]"/><strong>Hallgató B</strong><p class="m-0 text-sm opacity-70">saját séma</p><code>EDZOK</code></div>
-    <div class="col-span-2 flex justify-center"><div class="i-carbon-data-base text-4xl text-[#1a2a5a]"/></div>
-    <p class="col-span-2 text-sm opacity-70 m-0">Azonos objektumnév, külön tulajdonos és névtér.</p>
+    <div class="bg-white/5 p-5 rounded-xl border border-[#1a2a5a]/20">
+      <div class="i-carbon-user text-4xl mx-auto text-[#1a2a5a]"/>
+      <strong>Hallgató A</strong>
+      <p class="m-0 text-sm opacity-70">saját séma</p>
+      <code style="background-color: #1a2a5a;" class="bg-[#1a2a5a] text-white"">EDZOK tábla</code>
+    </div>
+    <div class="bg-white/5 p-5 rounded-xl border border-[#1a2a5a]/20">
+      <div class="i-carbon-user text-4xl mx-auto text-[#1a2a5a]"/>
+      <strong>Hallgató B</strong>
+      <p class="m-0 text-sm opacity-70">saját séma</p>
+      <code style="background-color: #1a2a5a;" class="bg-[#1a2a5a] text-white">EDZOK tábla</code>
+    </div>
   </div>
 </div>
 
 ---
 
 ::header::
-DDL · A szerkezet megtervezése
+DDL
 ::default::
 
 <div class="grid grid-cols-2 gap-8 items-center">
   <div class="space-y-4">
-    <h3 class="text-2xl font-bold text-[#1a2a5a]">Táblák és szabályok</h3>
-    <p class="opacity-80">A DDL (Data Definition Language) az adatbázis szerkezetét írja le. A táblák oszlopai mellett azt is meghatározzuk, milyen adatok érvényesek.</p>
-    <ul class="space-y-2">
-      <li><strong>PRIMARY KEY:</strong> egyértelműen azonosítja a sort.</li>
-      <li><strong>FOREIGN KEY:</strong> másik tábla létező sorára hivatkozik.</li>
-      <li><strong>NOT NULL, CHECK:</strong> kizárja az érvénytelen állapotokat.</li>
+    <p class="opacity-80">A Data Definition Language hozza létre (<code style="background-color: #1a2a5a;" class="bg-[#1a2a5a] text-white">CREATE</code>), módosítja (<code style="background-color: #1a2a5a;" class="bg-[#1a2a5a] text-white">ALTER</code>) és törli (<code style="background-color: #1a2a5a;" class="bg-[#1a2a5a] text-white">DROP</code>) az adatbázis objektumait. Emellett kényszerekkel (constraints) védi az adatokat:</p>
+    <ul class="space-y-2 text-sm">
+      <li><strong>PRIMARY KEY:</strong> Egyedileg azonosítja a sort (nem lehet NULL és nem ismétlődhet).</li>
+      <li><strong>FOREIGN KEY:</strong> Referenciális integritást biztosít; másik tábla létező elemére mutat.</li>
+      <li><strong>NOT NULL:</strong> Kötelező mezőkitöltés.</li>
+      <li><strong>CHECK:</strong> Egyedi validációs szabályok (pl. <code style="background-color: #1a2a5a;" class="bg-[#1a2a5a] text-white">fizetes >= 0</code>).</li>
     </ul>
+    <div class="bg-amber-50 border border-amber-300 rounded-xl p-3 text-sm mt-4 text-[#1a2a5a]"><strong>Oracle sajátosság:</strong> A DDL parancsok automatikusan (implicit módon) COMMIT-olnak. Egy elrontott <code style="background-color: #1a2a5a;" class="bg-[#1a2a5a] text-white">DROP TABLE</code> után nem használhatsz <code style="background-color: #1a2a5a;" class="bg-[#1a2a5a] text-white">ROLLBACK</code>-et!</div>
   </div>
-  <div class="bg-[#1a2a5a] text-white rounded-xl p-6 text-sm">
-<pre v-pre class="text-white text-sm leading-relaxed">
+  <div class="bg-slate-100 text-slate-900 border border-slate-300 rounded-xl p-6 text-sm">
+<pre v-pre class="text-slate-900 text-sm leading-relaxed">
 CREATE TABLE edzok (
   edzo_id NUMBER
     CONSTRAINT pk_edzok PRIMARY KEY,
@@ -163,93 +174,92 @@ CREATE TABLE edzok (
 ---
 
 ::header::
-DML · Adatmódosítás tranzakcióval
+DML ÉS TRANZAKCIÓK
 ::default::
 
 <div class="grid grid-cols-2 gap-8">
   <div>
-    <h3 class="text-2xl font-bold text-[#1a2a5a]">A módosítások együtt kezelhetők</h3>
-    <p class="opacity-80">Az INSERT, UPDATE és DELETE módosításai a tranzakció részei. COMMIT-tal véglegesítünk; ROLLBACK-kal visszavonjuk a még nem véglegesített módosításokat.</p>
-    <p class="opacity-80">A tranzakciók határait tudatosan tervezzük: egy üzleti művelet összetartozó lépései együtt maradjanak sikeresek vagy együtt legyenek visszavonhatók.</p>
+    <p class="opacity-80">A DML utasítások kezelik magukat az adatokat (<code style="background-color: #1a2a5a;" class="bg-[#1a2a5a] text-white">INSERT</code>, <code style="background-color: #1a2a5a;" class="bg-[#1a2a5a] text-white">UPDATE</code>, <code style="background-color: #1a2a5a;" class="bg-[#1a2a5a] text-white">DELETE</code>).</p>
+    <p class="opacity-80 mt-4 text-rose-600 font-bold">Veszélyforrás: Ha a WHERE feltételt elfelejted az UPDATE vagy DELETE parancsnál, az a tábla összes sorát érinteni fogja!</p>    
+    <h3 class="text-xl font-bold text-[#1a2a5a] mt-6">Tranzakcióvezérlés</h3>
+    <p class="opacity-80">A módosítások nem válnak azonnal véglegessé. Két fő eszközünk van a vezérlésre:
+    <br/>• <strong>COMMIT:</strong> Véglegesíti az elvégzett módosításokat.
+    <br/>• <strong>ROLLBACK:</strong> Visszavonja a tranzakció minden lépését a legutóbbi COMMIT-ig hiba vagy elgépelés esetén.</p>
   </div>
-  <div class="bg-[#1a2a5a] text-white rounded-xl p-5 text-sm">
-<pre v-pre class="text-white text-sm leading-relaxed">
+  <div class="bg-slate-100 text-slate-900 border border-slate-300 rounded-xl p-5 text-sm">
+<pre v-pre class="text-slate-900 text-sm leading-relaxed">
 UPDATE edzok
 SET fizetes = fizetes * 1.05
 WHERE reszleg_id = 20;
 
--- Ellenőrzés után:
+-- Ha minden adat helyes:
 COMMIT;
 
--- Hiba esetén, COMMIT előtt:
+-- Ha hibáztunk (pl. lemaradt a WHERE):
 ROLLBACK;
 </pre>
-    <div class="mt-3 grid grid-cols-2 gap-3 text-center"><div class="border border-white/30 p-3 rounded">COMMIT<br/><span class="text-xs opacity-70">véglegesítés</span></div><div class="border border-white/30 p-3 rounded">ROLLBACK<br/><span class="text-xs opacity-70">visszavonás</span></div></div>
   </div>
 </div>
 
 ---
 
 ::header::
-3. Miért PL/SQL?
+PL/SQL
 ::default::
 
 <div class="grid grid-cols-2 gap-8 items-center">
   <div>
-    <h3 class="text-2xl font-bold text-[#1a2a5a]">SQL megmondja, mit kérünk</h3>
-    <p class="opacity-80">A SQL deklaratív: leírjuk a kívánt adatot vagy módosítást, az adatbázis pedig végrehajtja a műveletet.</p>
-    <h3 class="text-2xl font-bold text-[#1a2a5a] mt-6">PL/SQL megadja a lépéseket</h3>
-    <p class="opacity-80">Változók, elágazások, ciklusok és hibakezelés segítségével fogalmazzuk meg az üzleti szabályokat a szerveren.</p>
+    <h3 class="text-2xl font-bold text-[#1a2a5a]">Miért nem elég az SQL?</h3>
+    <p class="opacity-80">Az SQL deklaratív nyelv, ami nagyszerű adatkinyerésre, de nem képes folyamatokat, döntési fákat leírni. A PL/SQL az Oracle procedurális nyelve, ami orvosolja ezt.</p>
+    <p class="opacity-80 mt-4">Változókat, ciklusokat (FOR, WHILE) és elágazásokat (IF-THEN-ELSE) biztosít. Közvetlenül az adatbázisszerveren fut le, így a hálózati forgalom drasztikusan csökken, a futás pedig villámgyors lesz. Segítségével komplett üzleti logikát "zárhatunk be" az adatbázisba.</p>
   </div>
-  <div class="bg-[#1a2a5a] text-white rounded-xl p-5 text-sm">
-<pre v-pre class="text-white text-sm leading-relaxed">
+  <div class="bg-slate-100 text-slate-900 border border-slate-300 rounded-xl p-5 text-sm">
+<pre v-pre class="text-slate-900 text-sm leading-relaxed">
 DECLARE
   v_fizetes employees.salary%TYPE;
 BEGIN
-  SELECT salary
-  INTO v_fizetes
-  FROM employees
-  WHERE employee_id = 100;
+  SELECT salary INTO v_fizetes
+  FROM employees WHERE employee_id = 100;
 
   IF v_fizetes > 10000 THEN
-    DBMS_OUTPUT.PUT_LINE('Magas');
+    DBMS_OUTPUT.PUT_LINE('Kiemelt');
   ELSE
     DBMS_OUTPUT.PUT_LINE('Normál');
   END IF;
 END;
 /
 </pre>
-    <p class="text-white/70 text-sm">Névtelen PL/SQL-blokk: DECLARE · BEGIN · END.</p>
   </div>
 </div>
 
 ---
 
 ::header::
-Adattípusok, amelyek együtt változnak az adattal
+PL/SQL BLOKK
 ::default::
 
 <div class="grid grid-cols-2 gap-8 items-center">
-  <div>
-    <h3 class="text-2xl font-bold text-[#1a2a5a]">Használjuk a tábla definícióját</h3>
-    <p class="opacity-80">A <code>%TYPE</code> attribútummal egy változó típusát egy oszlop típusához kötjük.</p>
-    <p class="opacity-80">Így a PL/SQL-változó együtt fejlődik az oszloppal, és elkerüljük a típus vagy méret kézi megkettőzését.</p>
-    <div class="mt-5 bg-white/5 p-4 rounded-xl border border-[#1a2a5a]/20"><strong class="text-[#1a2a5a]">Tipp:</strong> használd a valódi táblát és oszlopot, például <code>employees.salary%TYPE</code>.</div>
+  <div class="space-y-4">
+    <h3 class="text-2xl font-bold text-[#1a2a5a]">A kód strukturálása</h3>
+    <p class="opacity-80">Minden PL/SQL program egy szigorúan felépített blokkra épül:</p>
+    <ul class="space-y-3">
+      <li><strong>DECLARE (opcionális):</strong> Változók, kurzorok és kivételek előzetes deklarálása.</li>
+      <li><strong>BEGIN (kötelező):</strong> Az érdemi futtatható utasítások helye (logika + SQL parancsok).</li>
+      <li><strong>EXCEPTION (opcionális):</strong> Futásidejű hibák intelligens kezelése. Itt előzhetjük meg, hogy a program "elszálljon".</li>
+      <li><strong>END; (kötelező):</strong> A blokk lezárása.</li>
+      <li><strong>/ (perjel):</strong> A fejlesztőkörnyezetek (pl. SQL Developer) számára jelöli a blokk végét, utasítva azt a szerver felé történő elküldésre.</li>
+    </ul>
   </div>
-  <div class="bg-[#1a2a5a] text-white rounded-xl p-6">
-<pre v-pre class="text-white text-sm leading-relaxed">
+  <div class="bg-slate-100 text-slate-900 border border-slate-300 rounded-xl p-5 text-sm">
+<pre v-pre class="text-slate-900 text-sm leading-relaxed">
 DECLARE
-  v_nev employees.last_name%TYPE;
-  v_fizetes employees.salary%TYPE;
+  v_szam NUMBER := 10;
 BEGIN
-  SELECT last_name, salary
-  INTO v_nev, v_fizetes
-  FROM employees
-  WHERE employee_id = 100;
-
-  DBMS_OUTPUT.PUT_LINE(
-    v_nev || ': ' || v_fizetes
-  );
+  -- Hiba provokálása:
+  v_szam := v_szam / 0; 
+EXCEPTION
+  WHEN ZERO_DIVIDE THEN
+    DBMS_OUTPUT.PUT_LINE('Nullával osztás!');
 END;
 /
 </pre>
@@ -259,26 +269,103 @@ END;
 ---
 
 ::header::
-4. Több sor: kurzorok
+%TYPE ÉS %ROWTYPE
 ::default::
 
 <div class="grid grid-cols-2 gap-8 items-center">
   <div>
-    <h3 class="text-2xl font-bold text-[#1a2a5a]">A SELECT INTO egy sort vár</h3>
-    <p class="opacity-80">A SELECT INTO pontosan egy sort töltsön be. Nulla találatnál NO_DATA_FOUND, több találatnál TOO_MANY_ROWS kivétel keletkezik.</p>
-    <p class="opacity-80">Több sor feldolgozására kurzort, gyakran Cursor FOR Loop-ot használunk. A ciklus megnyitja, bejárja és lezárja a kurzort.</p>
+    <p class="opacity-80">Hardkódolt típusok (pl. <code style="background-color: #1a2a5a;" class="bg-[#1a2a5a] text-white">VARCHAR2(50)</code>) használata helyett kössük a változókat az adatbázis sémájához! Ha a táblaoszlop később módosul (pl. 100 karakterre), a PL/SQL kódunk is automatikusan, hibamentesen fog alkalmazkodni.</p>
+    <ul class="space-y-2 mt-4">
+      <li><strong>%TYPE:</strong> A változó pontosan felveszi a hivatkozott táblaoszlop adattípusát (pl. <code style="background-color: #1a2a5a;" class="bg-[#1a2a5a] text-white">employees.salary%TYPE</code>).</li>
+      <li><strong>%ROWTYPE:</strong> Egy komplett "rekordot" hoz létre, ami a tábla összes oszlopának szerkezetét lemásolja. Egyetlen <code style="background-color: #1a2a5a;" class="bg-[#1a2a5a] text-white">SELECT *</code> utasítással beolvashatunk egy teljes sort.</li>
+    </ul>
   </div>
-  <div class="bg-[#1a2a5a] text-white rounded-xl p-5 text-sm">
-<pre v-pre class="text-white text-sm leading-relaxed">
+  <div class="bg-slate-100 text-slate-900 border border-slate-300 rounded-xl p-6">
+<pre v-pre class="text-slate-900 text-sm leading-relaxed">
+DECLARE
+  v_nev employees.last_name%TYPE;
+  r_dolgozo employees%ROWTYPE;
 BEGIN
+  SELECT last_name INTO v_nev
+  FROM employees WHERE employee_id = 100;
+
+  -- Teljes sor rekordba töltése:
+  SELECT * INTO r_dolgozo
+  FROM employees WHERE employee_id = 100;
+  
+  DBMS_OUTPUT.PUT_LINE(r_dolgozo.salary);
+END;
+/
+</pre>
+  </div>
+</div>
+
+---
+
+::header::
+SELECT INTO ÉS KIVÉTELEK
+::default::
+
+<div class="grid grid-cols-2 gap-8 items-center">
+  <div>
+    <h3 class="text-2xl font-bold text-[#1a2a5a]">Adat beemelése változókba</h3>
+    <p class="opacity-80">A <code style="background-color: #1a2a5a;" class="bg-[#1a2a5a] text-white">SELECT ... INTO</code> záradékkal tudjuk az SQL lekérdezés eredményét PL/SQL változókba juttatni.</p>
+    <p class="opacity-80 mt-4 font-bold text-rose-600">Szigorú szabály: Ez az utasítás pontosan egy (és csakis egy) sort adhat vissza!</p>
+    <ul class="space-y-2 mt-2">
+      <li>Nulla találat esetén: <strong>NO_DATA_FOUND</strong> kivétel.</li>
+      <li>Több találat esetén: <strong>TOO_MANY_ROWS</strong> kivétel.</li>
+    </ul>
+    <p class="opacity-80 mt-4">Ha nem vagyunk biztosak abban, hogy a lekérdezés hány sort eredményez, használjunk kurzort. Az egy soros lekérdezéseknél pedig kötelező ezen hibák lekezelése az EXCEPTION blokkban.</p>
+  </div>
+  <div class="bg-slate-100 text-slate-900 border border-slate-300 rounded-xl p-5 text-sm">
+<pre v-pre class="text-slate-900 text-sm leading-relaxed">
+DECLARE
+  v_fiz employees.salary%TYPE;
+BEGIN
+  SELECT salary INTO v_fiz
+  FROM employees WHERE employee_id = 9999;
+EXCEPTION
+  WHEN NO_DATA_FOUND THEN
+    DBMS_OUTPUT.PUT_LINE('Nincs ilyen dolgozó!');
+  WHEN TOO_MANY_ROWS THEN
+    DBMS_OUTPUT.PUT_LINE('Több dolgozó!');
+    RAISE; -- Hiba "feljebb" dobása
+END;
+/
+</pre>
+  </div>
+</div>
+
+---
+
+::header::
+KURZOROK
+::default::
+
+<div class="grid grid-cols-2 gap-8 items-center">
+  <div>
+    <h3 class="text-2xl font-bold text-[#1a2a5a]">Több soros eredményhalmazok</h3>
+    <p class="opacity-80">Mivel a SELECT INTO csak egy sort bír el, több adatsor (pl. egy részleg összes dolgozója) feldolgozásához kurzorokat használunk. A kurzor egy mutató a memóriában lévő adathalmazra.</p>
+    <p class="opacity-80 mt-4">A legprofibb megoldás a <strong>Cursor FOR Loop</strong>, mert ez mindent automatizál:</p>
+    <ol class="list-decimal pl-5 opacity-80 space-y-1">
+      <li>Automatikusan deklarálja a ciklusváltozót.</li>
+      <li>Megnyitja a kurzort (OPEN).</li>
+      <li>Soronként beolvassa az adatokat, amíg van (FETCH).</li>
+      <li>Hiba, vagy leállás esetén automatikusan lezárja azt (CLOSE).</li>
+    </ol>
+  </div>
+  <div class="bg-slate-100 text-slate-900 border border-slate-300 rounded-xl p-5 text-sm">
+<pre v-pre class="text-slate-900 text-sm leading-relaxed">
+BEGIN
+  -- Az 'r' ciklusváltozót nem kell DECLARE-ben megadni
   FOR r IN (
-    SELECT employee_id, last_name
+    SELECT employee_id, last_name, salary
     FROM employees
     WHERE department_id = 50
-    ORDER BY last_name
+    ORDER BY salary DESC
   ) LOOP
     DBMS_OUTPUT.PUT_LINE(
-      r.employee_id || ' ' || r.last_name
+      r.last_name || ': ' || r.salary
     );
   END LOOP;
 END;
@@ -290,37 +377,49 @@ END;
 ---
 
 ::header::
-Kurzorok, zárolás és kivételek
+FOR UPDATE ÉS SAJÁT KIVÉTELEK
 ::default::
 
-<div class="grid grid-cols-3 gap-5 mt-4">
-  <div class="bg-white/5 p-5 rounded-xl border border-[#1a2a5a]/20"><div class="i-carbon-locked text-4xl text-[#1a2a5a]"/><h3 class="font-bold">FOR UPDATE</h3><p class="text-sm opacity-80">A kiválasztott sorokat zárolhatjuk a tranzakció végéig, hogy más tranzakció ne módosítsa őket párhuzamosan.</p></div>
-  <div class="bg-white/5 p-5 rounded-xl border border-[#1a2a5a]/20"><div class="i-carbon-warning text-4xl text-[#1a2a5a]"/><h3 class="font-bold">Beépített kivételek</h3><p class="text-sm opacity-80">A NO_DATA_FOUND és TOO_MANY_ROWS a lekérdezés eredményének eseteit jelzi; kezeljük őket tudatosan.</p></div>
-  <div class="bg-white/5 p-5 rounded-xl border border-[#1a2a5a]/20"><div class="i-carbon-rule text-4xl text-[#1a2a5a]"/><h3 class="font-bold">Saját üzleti hiba</h3><p class="text-sm opacity-80">A RAISE_APPLICATION_ERROR érthető, alkalmazás felé továbbítható hibát ad, például tiltott negatív fizetéskor.</p></div>
-</div>
-<div class="bg-[#1a2a5a] text-white rounded-xl p-4 mt-5 text-sm">
-<pre v-pre class="text-white text-sm leading-relaxed">
-IF p_fizetes < 0 THEN
-  RAISE_APPLICATION_ERROR(-20001, 'A fizetés nem lehet negatív.');
-END IF;
+<div class="grid grid-cols-2 gap-8 items-center">
+  <div class="space-y-4">
+    <h3 class="text-2xl font-bold text-[#1a2a5a]">FOR UPDATE (Sorok zárolása)</h3>
+    <p class="opacity-80">Kurzoroknál a <code style="background-color: #1a2a5a;" class="bg-[#1a2a5a] text-white">FOR UPDATE</code> utasítással zárolhatjuk a kiválasztott sorokat. Ezzel megelőzhető a konkurens adatmódosítás (elveszett frissítés), amíg az aktuális tranzakciónk le nem zárul (COMMIT vagy ROLLBACK).</p>
+    <h3 class="text-2xl font-bold text-[#1a2a5a] mt-6">Saját hibák generálása</h3>
+    <p class="opacity-80">Üzleti szabályok megsértésekor (pl. a fizetés nem lehet negatív) a tranzakciót meg kell szakítani. A <code style="background-color: #1a2a5a;" class="bg-[#1a2a5a] text-white">RAISE_APPLICATION_ERROR</code> procedúrával saját hibakódot (-20000 és -20999 között) és üzenetet adhatunk a hívó kliensalkalmazás (Python, Java stb.) tudtára, nem csak a szerver konzoljára írunk.</p>
+  </div>
+  <div class="bg-slate-100 text-slate-900 border border-slate-300 rounded-xl p-5 text-sm">
+<pre v-pre class="text-slate-900 text-sm leading-relaxed">
+DECLARE
+  v_fizetes NUMBER := -500;
+BEGIN
+  IF v_fizetes < 0 THEN
+    -- Futás azonnali megszakítása:
+    RAISE_APPLICATION_ERROR(
+      -20001, 
+      'Hiba: A fizetés nem lehet negatív!'
+    );
+  END IF;
+END;
+/
 </pre>
+  </div>
 </div>
 
 ---
 
 ::header::
-5. Újrahasznosítható alprogramok
+FÜGGVÉNY ÉS ELJÁRÁS
 ::default::
 
 <div class="grid grid-cols-2 gap-8">
   <div class="bg-white/5 p-6 rounded-xl border border-[#1a2a5a]/20">
     <div class="i-carbon-function text-4xl text-[#1a2a5a]"/><h3 class="text-2xl font-bold text-[#1a2a5a]">Függvény</h3>
-    <p class="opacity-80">Egy értéket számít ki és <code>RETURN</code>-nel ad vissza. Lekérdezésekben is használható, ha megfelelnek az SQL-hívás szabályainak.</p>
-    <div class="bg-[#1a2a5a] text-white p-4 rounded text-sm">
-<pre v-pre class="text-white text-sm leading-relaxed">
-CREATE OR REPLACE FUNCTION
-  eves_fizetes(p_havi NUMBER)
-  RETURN NUMBER IS
+    <p class="opacity-80 mt-2"><strong>Értékek számítására és visszaadására</strong> való (kötelező <code style="background-color: #1a2a5a;" class="bg-[#1a2a5a] text-white">RETURN</code>). Előnye, hogy normál SQL lekérdezésekbe (DQL) is beilleszthető.</p>
+    <div class="bg-slate-100 text-slate-900 border border-slate-300 p-4 rounded text-sm mt-4">
+<pre v-pre class="text-slate-900 text-sm leading-relaxed">
+CREATE OR REPLACE FUNCTION eves_fizetes(
+  p_havi IN NUMBER
+) RETURN NUMBER IS
 BEGIN
   RETURN p_havi * 12;
 END;
@@ -330,15 +429,17 @@ END;
   </div>
   <div class="bg-white/5 p-6 rounded-xl border border-[#1a2a5a]/20">
     <div class="i-carbon-workflow-automation text-4xl text-[#1a2a5a]"/><h3 class="text-2xl font-bold text-[#1a2a5a]">Eljárás</h3>
-    <p class="opacity-80">Egy műveletet vagy üzleti folyamatot hajt végre. IN, OUT és IN OUT paraméterekkel kommunikálhat a hívóval.</p>
-    <div class="bg-[#1a2a5a] text-white p-4 rounded text-sm">
-<pre v-pre class="text-white text-sm leading-relaxed">
-CREATE OR REPLACE PROCEDURE
-  udvozles(p_nev IN VARCHAR2) IS
+    <p class="opacity-80 mt-2"><strong>Adatmódosítások</strong> elvégzésére szolgál. Bemenő és kimenő paraméterei vannak.</p>
+    <div class="bg-slate-100 text-slate-900 border border-slate-300 p-4 rounded text-sm mt-4">
+<pre v-pre class="text-slate-900 text-sm leading-relaxed">
+CREATE OR REPLACE PROCEDURE uj_fizetes(
+  p_id IN employees.employee_id%TYPE,
+  p_szazalek IN NUMBER
+) IS
 BEGIN
-  DBMS_OUTPUT.PUT_LINE(
-    'Üdv, ' || p_nev
-  );
+  UPDATE employees 
+  SET salary = salary * (1 + (p_szazalek/100))
+  WHERE employee_id = p_id;
 END;
 /
 </pre>
@@ -349,29 +450,27 @@ END;
 ---
 
 ::header::
-Triggerekkel automatizálunk
+TRIGGER
 ::default::
 
 <div class="grid grid-cols-2 gap-8">
   <div class="space-y-4">
-    <h3 class="text-2xl font-bold text-[#1a2a5a]">A trigger eseményre fut le</h3>
-    <p class="opacity-80">A trigger egy táblán vagy más adatbázis-objektumon bekövetkező eseményhez kötött PL/SQL-kód. INSERT, UPDATE vagy DELETE indíthatja el.</p>
-    <div class="border-l-4 border-[#1a2a5a] pl-4"><strong>BEFORE</strong><p class="m-0 opacity-80">Validáció, érték ellenőrzése vagy kitöltése a művelet előtt.</p></div>
-    <div class="border-l-4 border-[#1a2a5a]/40 pl-4"><strong>AFTER</strong><p class="m-0 opacity-80">Naplózás vagy más, sikeres művelet utáni teendő.</p></div>
-    <p class="text-sm opacity-70">Sor szintű triggerekben a <code>:OLD</code> a korábbi, a <code>:NEW</code> az új oszlopértékre hivatkozik.</p>
+    <p class="opacity-80">Olyan eseményvezérelt PL/SQL kódok, amelyek DML utasítások (INSERT, UPDATE, DELETE) hatására maguktól aktiválódnak.</p>
+    <div class="border-l-4 border-[#1a2a5a] pl-4"><strong class="text-[#1a2a5a]">BEFORE Trigger:</strong> Még az adatmódosítás előtt lefut. Kiváló adatok validálására (pl. negatív fizetés megakadályozása <code style="background-color: #1a2a5a;" class="bg-[#1a2a5a] text-white">RAISE_APPLICATION_ERROR</code>-ral) vagy alapértelmezett értékek pótlására.</div>
+    <div class="border-l-4 border-[#1a2a5a]/40 pl-4"><strong class="text-[#1a2a5a]">AFTER Trigger:</strong> Sikeres módosítás után aktiválódik. Tipikusan naplózásra, szinkronizációra használatos.</div>
+    <p class="opacity-80 mt-2">Sorszintű (FOR EACH ROW) működésnél hozzáférünk a tranzakció előtti (<code style="background-color: #1a2a5a;" class="bg-[#1a2a5a] text-white">:OLD</code>) és utáni (<code style="background-color: #1a2a5a;" class="bg-[#1a2a5a] text-white">:NEW</code>) állapotokhoz.</p>
   </div>
-  <div class="bg-[#1a2a5a] text-white rounded-xl p-5 text-sm">
-<pre v-pre class="text-white text-sm leading-relaxed">
-CREATE OR REPLACE TRIGGER
-  trg_edzok_fizetes
-BEFORE INSERT OR UPDATE OF fizetes
-ON edzok
+  <div class="bg-slate-100 text-slate-900 border border-slate-300 rounded-xl p-5 text-sm flex flex-col justify-center">
+<pre v-pre class="text-slate-900 text-sm leading-relaxed">
+CREATE OR REPLACE TRIGGER trg_fizetes_vedelem
+BEFORE UPDATE OF salary ON employees
 FOR EACH ROW
 BEGIN
-  IF :NEW.fizetes < 0 THEN
+  -- Szigorú növekedési szabály:
+  IF :NEW.salary < :OLD.salary THEN
     RAISE_APPLICATION_ERROR(
-      -20001,
-      'A fizetés nem lehet negatív.'
+      -20002,
+      'A fizetés nem csökkenthető!'
     );
   END IF;
 END;
@@ -379,3 +478,5 @@ END;
 </pre>
   </div>
 </div>
+
+---
