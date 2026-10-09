@@ -28,7 +28,7 @@ routerMode: hash
 TÉMAKÖRÖK
 ::default::
 
-<div class="grid grid-cols-3 gap-5 mt-5">
+<div class="grid grid-cols-4 gap-5 mt-5">
   <div class="bg-white/5 p-6 rounded-xl border border-[#1a2a5a]/20">
     <div class="text-4xl font-bold text-[#1a2a5a]">01</div><h3 class="text-xl font-bold">DQL</h3>
     <p class="opacity-80">A HR sémában vettük át a Data Query Language alapjait , vagyis a 
@@ -41,7 +41,11 @@ TÉMAKÖRÖK
   </div>
   <div class="bg-white/5 p-6 rounded-xl border border-[#1a2a5a]/20">
     <div class="text-4xl font-bold text-[#1a2a5a]">03</div><h3 class="text-xl font-bold">PL/SQL</h3>
-    <p class="opacity-80">Amikor az SQL már nem elég: bevezetjük a változókat, ciklusokat és hibakezelést. Megtanuljuk a tárolt eljárások, függvények és triggerek írását az üzleti folyamatok automatizálására.</p>
+    <p class="opacity-80">Bevezetjük a változókat, ciklusokat és hibakezelést. Megtanuljuk a tárolt eljárások, függvények és triggerek írását az üzleti folyamatok automatizálására.</p>
+  </div>
+  <div class="bg-white/5 p-6 rounded-xl border border-[#1a2a5a]/20">
+    <div class="text-4xl font-bold text-[#1a2a5a]">04</div><h3 class="text-xl font-bold">GITHUB</h3>
+    <p class="opacity-80">Beadandó leadása során használjuk a <code style="background-color: #1a2a5a;" class="bg-[#1a2a5a] text-white">FORK</code>, <code style="background-color: #1a2a5a;" class="bg-[#1a2a5a] text-white">CLONE</code> <code style="background-color: #1a2a5a;" class="bg-[#1a2a5a] text-white">COMMIT</code> és <code style="background-color: #1a2a5a;" class="bg-[#1a2a5a] text-white">PUSH</code> parancsokat. A saját verziónkat végül <code style="background-color: #1a2a5a;" class="bg-[#1a2a5a] text-white">PULL REQUEST</code> formájában adjuk le.</p>
   </div>
 </div>
 
@@ -480,3 +484,194 @@ END;
 </div>
 
 ---
+
+::header::
+GITHUB
+::default::
+<div class="grid grid-cols-2 gap-8 items-center">
+  <div>
+    <p class="opacity-80">A feladatok a következő Github organizációba található:
+    <a target="_blank" href="https://github.com/ekke-edu/advanced-databases-2">EKKE-EDU Github nem hivatalos organizáció </a>
+    </p>
+    <p class="opacity-80">Az órai feladatokat a következő branch-ekbe találod:</p>
+    <ul>
+    <li><a target="_blank" href="https://github.com/ekke-edu/advanced-databases-2/tree/sql-basic">sql-basic</a></li>
+    <li><a target="_blank" href="https://github.com/ekke-edu/advanced-databases-2/tree/plsql-basic/plsql.md">plsql-basic</a></li>
+    <li><a target="_blank" href="https://github.com/ekke-edu/advanced-databases-2/tree/cursors-exceptions/cursors-exceptions.md">cursors-exceptions</a></li>
+    <li><a target="_blank" href="https://github.com/ekke-edu/advanced-databases-2/tree/stored-procedures/stored-procedures.md">stored-procedures</a></li>
+    <li><a target="_blank" href="https://github.com/ekke-edu/advanced-databases-2/tree/triggers/triggers.md">trieggers</a></li>
+    </ul>
+  </div>
+  <div class="grid grid-cols-1  text-center">
+    <img src="/assets/github_instructions/org.jpeg" class="h-[100%] w-full filter" />
+  </div>
+</div>
+
+---
+
+::header::
+FORK
+::default::
+<div class="grid grid-cols-2 gap-8 items-center">
+  <div>
+    <p class="opacity-80">Az előző dián látható a <code style="background-color: #1a2a5a;" class="bg-[#1a2a5a] text-white">FORK</code> gomb. A megnyomása utána a következő képernyőt fogod látni.</p>
+    <ul>
+      <li>Owner: A saját Github fiókodat válaszd</li>
+      <li>Repository name: Hagyd változatlanul</li>
+      <li>Copy the main branch only checkbox: pipáld be</li>
+    </ul>
+  </div>
+  <div class="grid grid-cols-1  text-center">
+    <img src="/assets/github_instructions/fork.jpg" class="h-[100%] w-full filter" />
+  </div>
+</div>
+
+---
+
+::header::
+CLONE
+::default::
+
+<div class="grid grid-cols-2 gap-8 items-center">
+  <div>
+    <p class="opacity-80">Navigáljatok a saját Github profilotokra, ahová le forkoltátok a branch-et. Majd a <code  style="background-color: #1a2a5a;" class="bg-[#1a2a5a] text-white">< > CODE</code> gombnál válaszd a HTTPS-t és másold ki a linket alatta.</p>
+  </div>  
+  <div class="grid grid-cols-1  text-center">
+    <img src="/assets/github_instructions/clone.jpg" class="h-[100%] w-full filter" />
+  </div>
+</div>
+
+---
+
+::header::
+CLONE II.
+::default::
+
+<div class="grid grid-cols-2 gap-8 items-center">
+  <div>
+    <p class="opacity-80">Klónozzátok le a képen látható módon a forkolt branchetek.</p>
+    <p class="opacity-80">Ha VS Code van telepítve a gépetekre, a parancssorba a <code  style="background-color: #1a2a5a;" class="bg-[#1a2a5a] text-white"> code .</code> paranccsal megnyitja a VS Code-ba a klónozott projektet.</p>
+  </div>  
+  <div class="grid grid-cols-1  text-center">
+    <img src="/assets/github_instructions/clone2.jpg" class="h-[100%] w-full filter" />
+  </div>
+</div>
+
+---
+
+::header::
+COMMIT, PUSH
+::default::
+
+<div class="grid grid-cols-2 gap-8 items-center">
+  <div>
+    <p class="opacity-80">Csináljátok meg a beadandót, majd a bal oldali sávban a harmadik tabon láthatjátok a Git változásokat.</p>
+    <p class="opacity-80">Egy lépés kimaradt a képről: a módosított fájlra vidd rá az egeret, és megjelenik egy + jel</p>
+    <p>Miután sikerült <code  style="background-color: #1a2a5a;" class="bg-[#1a2a5a] text-white">STAGE</code> sikerült, a képen látható üzenetet írd be és nyomd meg a <code  style="background-color: #1a2a5a;" class="bg-[#1a2a5a] text-white">Commit&Push</code> gombot.</p>
+  </div>  
+  <div class="grid grid-cols-1  text-center">
+    <img src="/assets/github_instructions/commit_push.jpg" class="h-[100%] w-full filter" />
+  </div>
+</div>
+
+---
+
+::header::
+PULL REQUEST
+::default::
+
+<div class="grid grid-cols-2 gap-8 items-center">
+  <div>
+    <p class="opacity-80">Kattintsatok a <code  style="background-color: #1a2a5a;" class="bg-[#1a2a5a] text-white">PULL REQUEST</code> menü gombra, majd válasszátok ki a jobb oldali legördülő listába az <code  style="background-color: #1a2a5a;" class="bg-[#1a2a5a] text-white">ekke-edu/advanced-databases-2 </code> repository-t.</p>
+  </div>  
+  <div class="grid grid-cols-1  text-center">
+    <img src="/assets/github_instructions/pull_request.jpg" class="h-[100%] w-full filter" />
+  </div>
+</div>
+
+---
+
+::header::
+BEADANDÓ
+::default::
+<div class="grid grid-cols-2 gap-8 items-center">
+  <div>
+    <p class="opacity-80"> A következő alkalom előtt oldjátok meg a következő feladatokat (a táblákat, csináljátok meg a saját sémátokba): </p>
+    <ul>
+      <li>DQL feladatokból amiket technikai okokból nem tudtunk megoldani: 2., 3., 5., 8., 10., 11., 15., 16., 17., 18., 19., 20. (Aki nem jelent meg, értelem szerűen az összeset)</li>
+      <li>A <code style="background-color: #1a2a5a;" class="bg-[#1a2a5a] text-white">pokemonok</code> táblát használva írj PL/SQL blokkot:
+        <ul>
+          <li> Lekéri és kiíratja a legkisebb <code style="background-color: #1a2a5a;" class="bg-[#1a2a5a] text-white">ALAP_HP</code> -val rendelkező pokémon nevét és típusát </li>
+        </ul> 
+      </li>
+      <li>PLSQL fibonacci függvény kiíratása</li>
+    </ul>
+  </div>  
+  <div class="grid grid-cols-1  text-center">
+  <table style="width:100%; border-collapse: collapse; font-family: sans-serif; font-size: 13px;">
+  <thead>
+    <tr style="background-color: #f2f2f2; border-bottom: 2px solid #ddd; text-align: left;">
+      <th style="padding: 2px;">Tábla neve</th>
+      <th style="padding: 2px;">Mezők (Oszlopok)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="border-bottom: 1px solid #eee;">
+      <td style="padding: 2px; font-weight: bold; white-space: nowrap;">COUNTRIES</td>
+      <td style="padding: 2px; color: #333;">COUNTRY_ID, COUNTRY_NAME, REGION_ID</td>
+    </tr>
+    <tr style="border-bottom: 1px solid #eee; background-color: #fafafa;">
+      <td style="padding: 2px; font-weight: bold; white-space: nowrap;">DEPARTMENTS</td>
+      <td style="padding: 2px; color: #333;">DEPARTMENT_ID, DEPARTMENT_NAME, MANAGER_ID, LOCATION_ID</td>
+    </tr>
+    <tr style="border-bottom: 1px solid #eee;">
+      <td style="padding: 2px; font-weight: bold; white-space: nowrap;">EMPLOYEES</td>
+      <td style="padding: 2px; color: #333;">EMPLOYEE_ID, FIRST_NAME, LAST_NAME, EMAIL, PHONE_NUMBER, HIRE_DATE, JOB_ID, SALARY, COMMISSION_PCT, MANAGER_ID, DEPARTMENT_ID</td>
+    </tr>
+    <tr style="border-bottom: 1px solid #eee; background-color: #fafafa;">
+      <td style="padding: 2px; font-weight: bold; white-space: nowrap;">JOB_HISTORY</td>
+      <td style="padding: 2px; color: #333;">EMPLOYEE_ID, START_DATE, END_DATE, JOB_ID, DEPARTMENT_ID</td>
+    </tr>
+    <tr style="border-bottom: 1px solid #eee;">
+      <td style="padding: 2px; font-weight: bold; white-space: nowrap;">JOBS</td>
+      <td style="padding: 2px; color: #333;">JOB_ID, JOB_TITLE, MIN_SALARY, MAX_SALARY</td>
+    </tr>
+    <tr style="border-bottom: 1px solid #eee; background-color: #fafafa;">
+      <td style="padding: 2px; font-weight: bold; white-space: nowrap;">LOCATIONS</td>
+      <td style="padding: 2px; color: #333;">LOCATION_ID, STREET_ADDRESS, POSTAL_CODE, CITY, STATE_PROVINCE, COUNTRY_ID</td>
+    </tr>
+    <tr style="border-bottom: 1px solid #eee;">
+      <td style="padding: 2px; font-weight: bold; white-space: nowrap;">REGIONS</td>
+      <td style="padding: 2px; color: #333;">REGION_ID, REGION_NAME</td>
+    </tr>
+  </tbody>
+</table>
+  </div>
+</div>
+
+---
+
+::header::
+CSATLAKOZÁS
+::default::
+
+<div class="grid grid-cols-2 gap-8 items-center">
+  <div>
+    <p class="opacity-80">OpenVPN kliens:</p>
+     <p>Töltse le és telepítse az OpenVPN kliens szoftvert (https://openvpn.net/index.php/open-source/downloads.html).
+      Töltse le és másolja az itt elérhető konfigurációs beállításokat tartalmazó állományt az Open VPN konfigurációs állomáynai közé. Például Windows esetén a C:\Program Files\OpenVPN\config\ almappába kell másolni.
+      Az OpenVPN indítását követően a kapcsolódás során felhasználónévként használja Neptun kódját, illetve jelszóként akutális Neptun jelszavát.</p>
+  </div>  
+  <div class="grid grid-cols-1">
+    <p class="opacity-80">SQL Developer konfiguráció:</p>
+    <ul>
+      <li>Name: Adjon nevet a kapcsolatnak (pl. "EKKE - Neptun kód")</li>
+      <li>Database Type: Oracle</li>
+      <li>Username: Neptun kód</li>
+      <li>Password: kurzuson elhangzott / megváltoztatott jelszó</li>
+      <li>Hostname: oracledb.uni-eszterhazy.hu</li>
+      <li>Port: 1521</li>
+      <li>Service Name: EKKEDEMO</li>
+    </ul>
+  </div>
+</div>
