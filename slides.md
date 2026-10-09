@@ -1,5 +1,5 @@
 ---
-title: Adatbázisrendszerek II. – SQL és PL/SQL Mesterkurzus
+title: Adatbázisrendszerek II. – SQL és PL/SQL gyakorlat
 routerMode: hash
 ---
 
