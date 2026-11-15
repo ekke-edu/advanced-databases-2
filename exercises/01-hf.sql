@@ -1,0 +1,7 @@
+-- Összes dql feladat 
+--      táblákat létrehozni
+--      adatok felvétele (legtöbb áthozható a hr-ből)
+--      01-sql-basic-dql
+-- A pokemonok táblát használva írj PL/SQL blokkot:
+--      Lekéri és kiíratja a legkisebb ALAP_HP-val rendelkező pokémon nevét és típusát
+-- PLSQL fibonacci függvény kiíratása
