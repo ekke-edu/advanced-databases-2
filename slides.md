@@ -695,6 +695,80 @@ CSATLAKOZÁS
 ---
 
 ::header::
+Értékelési útmutató
+::default::
+<div class="grid grid-cols-2 gap-6 text-sm">
+  <div class="space-y-5">
+    <table class="w-full border-collapse text-left">
+      <thead>
+        <tr class="bg-[#1a2a5a] text-white">
+          <th class="p-2">Értékelés</th>
+          <th class="p-2">Pont</th>
+          <th class="p-2">%</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="border-b border-slate-300">
+          <td class="p-2">Beadandók</td>
+          <td class="p-2">10 pont</td>
+          <td class="p-2">40%</td>
+        </tr>
+        <tr class="border-b border-slate-300">
+          <td class="p-2">Online ZH</td>
+          <td class="p-2">5 pont</td>
+          <td class="p-2">60%</td>
+        </tr>
+      </tbody>
+    </table>
+    <table class="w-full border-collapse text-left">
+      <thead>
+        <tr class="bg-[#1a2a5a] text-white">
+          <th class="p-2">Érdemjegy</th>
+          <th class="p-2">Százalékhatár</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="border-b border-slate-300"><td class="p-2">5 (jeles)</td><td class="p-2">88%–100%</td></tr>
+        <tr class="border-b border-slate-300"><td class="p-2">4 (jó)</td><td class="p-2">75%–87%</td></tr>
+        <tr class="border-b border-slate-300"><td class="p-2">3 (közepes)</td><td class="p-2">63%–74%</td></tr>
+        <tr class="border-b border-slate-300"><td class="p-2">2 (elégséges)</td><td class="p-2">50%–62%</td></tr>
+        <tr class="border-b border-slate-300"><td class="p-2">1 (elégtelen)</td><td class="p-2">0%–49%</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="grid grid-cols-3 gap-3">
+    <table class="w-full border-collapse text-left">
+      <thead><tr class="bg-[#1a2a5a] text-white"><th class="p-2">Beadandó I.</th><th class="p-2">Pont</th></tr></thead>
+      <tbody>
+        <tr class="border-b border-slate-300"><td class="p-2">DQL feladatok</td><td class="p-2">3</td></tr>
+        <tr class="border-b border-slate-300"><td class="p-2">PL/SQL blokk</td><td class="p-2">1</td></tr>
+        <tr class="border-b border-slate-300"><td class="p-2">Fibonacci függvény</td><td class="p-2">1</td></tr>
+      </tbody>
+    </table>
+    <table class="w-full border-collapse text-left">
+      <thead><tr class="bg-[#1a2a5a] text-white"><th class="p-2">Beadandó II.</th><th class="p-2">Pont</th></tr></thead>
+      <tbody>
+        <tr class="border-b border-slate-300"><td class="p-2">Kurzor</td><td class="p-2">2</td></tr>
+        <tr class="border-b border-slate-300"><td class="p-2">Tárolt eljárás</td><td class="p-2">2</td></tr>
+        <tr class="border-b border-slate-300"><td class="p-2">Trigger</td><td class="p-2">1</td></tr>
+      </tbody>
+    </table>
+    <table class="w-full border-collapse text-left">
+      <thead><tr class="bg-[#1a2a5a] text-white"><th class="p-2">ZH</th><th class="p-2">Pont</th></tr></thead>
+      <tbody>
+        <tr class="border-b border-slate-300"><td class="p-2">DQL alap</td><td class="p-2">1</td></tr>
+        <tr class="border-b border-slate-300"><td class="p-2">PL/SQL alap</td><td class="p-2">1</td></tr>
+        <tr class="border-b border-slate-300"><td class="p-2">Kurzor</td><td class="p-2">1</td></tr>
+        <tr class="border-b border-slate-300"><td class="p-2">Tárolt eljárás</td><td class="p-2">1</td></tr>
+        <tr class="border-b border-slate-300"><td class="p-2">Trigger</td><td class="p-2">1</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+---
+
+::header::
 Zárthelyi dolgozat
 ::default::
 <div class="grid grid-cols-2 gap-8 items-center">
