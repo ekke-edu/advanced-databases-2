@@ -650,6 +650,21 @@ BEADANDÓ
 </div>
 
 ---
+::header::
+BEADANDÓ II.
+::default::
+<div class="grid grid-cols-2 gap-8 items-center">
+  <div>
+    <p class="opacity-80"> 2026. december 6-ig oldjátok meg a következő feladatokat (a táblákat ha szükséges, csináljátok meg a saját sémátokba): </p>
+    <ul>
+      <li>Kurzorok feladatokból: 4., 5., 6.</li>
+      <li>Tárolt eljárások feladatokból: 4., 5.</li>
+      <li>Triggerek feladatokból: 4., 5.</li>
+    </ul>
+  </div>  
+</div>
+
+---
 
 ::header::
 CSATLAKOZÁS
@@ -675,3 +690,17 @@ CSATLAKOZÁS
     </ul>
   </div>
 </div>
+
+---
+
+::header::
+Zárthelyi dolgozat
+::default::
+<div class="grid grid-cols-2 gap-8 items-center">
+  <div>
+    <p class="opacity-80">Feladatok:</p>
+    <img src="/assets/github_instructions/cat.jpg" class="h-[100%] w-full filter" />
+  </div>  
+</div>
+
+---
