@@ -954,14 +954,13 @@ WHERE CURRENT OF c_norm;
 ---
 
 ::header::
-TÁROLT ALPROGRAMOK ÉS TRIGGEREK
+TÁROLT FÜGGVÉNYEK ÉS ELJÁRÁSOK
 ::default::
 
 <div class="grid grid-cols-2 gap-6 items-start text-sm">
-  <div class="space-y-4">
-    <div class="bg-slate-100 text-slate-900 border border-slate-300 rounded-xl p-5">
-      <h3 class="text-xl font-bold text-[#1a2a5a] mt-0">Tárolt függvény</h3>
-      <p class="opacity-80">Értéket ad vissza: meg kell adni a <code style="background-color:#1a2a5a;color:#fff;padding:0 0.25rem;border-radius:0.2rem">RETURN adattípus</code>-t, és minden sikeres útvonalon legyen <code style="background-color:#1a2a5a;color:#fff;padding:0 0.25rem;border-radius:0.2rem">RETURN érték;</code>. Tesztelhető például SQL-lekérdezésben, ha a függvény nem végez tiltott mellékhatású műveletet.</p>
+  <div class="bg-slate-100 text-slate-900 border border-slate-300 rounded-xl p-5">
+    <h3 class="text-xl font-bold text-[#1a2a5a] mt-0">Függvény – értéket ad vissza</h3>
+    <p class="opacity-80">A fejlécben visszatérési típust adunk meg; minden sikeres futási ágon legyen <code style="background-color:#1a2a5a;color:#fff;padding:0 0.25rem;border-radius:0.2rem">RETURN</code>. A hibát kezelhetjük, vagy továbbengedhetjük a hívónak.</p>
 <pre v-pre class="text-slate-900 text-xs leading-snug">
 CREATE OR REPLACE FUNCTION fn_edzo_xp(
   p_edzo_id IN NUMBER
@@ -976,38 +975,58 @@ EXCEPTION
 END;
 /
 
+-- kipróbálás SQL-ből
 SELECT fn_edzo_xp(1) FROM DUAL;
 </pre>
-    </div>
-    <div class="bg-white/5 p-5 rounded-xl border border-[#1a2a5a]/20">
-      <h3 class="text-xl font-bold text-[#1a2a5a] mt-0">Paraméterek</h3>
-      <p class="mb-0 opacity-80"><code style="background-color:#1a2a5a;color:#fff;padding:0 0.25rem;border-radius:0.2rem">IN</code> bemenet (alapértelmezett), <code style="background-color:#1a2a5a;color:#fff;padding:0 0.25rem;border-radius:0.2rem">OUT</code> visszaadott érték, <code style="background-color:#1a2a5a;color:#fff;padding:0 0.25rem;border-radius:0.2rem">IN OUT</code> be- és kimenet. <code style="background-color:#1a2a5a;color:#fff;padding:0 0.25rem;border-radius:0.2rem">OUT</code>-hoz a hívó blokkban változót adj át. Függvény értéket ad; eljárást önállóan hívunk, például <code style="background-color:#1a2a5a;color:#fff;padding:0 0.25rem;border-radius:0.2rem">BEGIN sp_pelda(...); END;</code>.</p>
-    </div>
+    <p class="mb-0 mt-2 opacity-80">A tananyag szerinti egyszerű függvény bemenetet kap, adatot kérdez le, és visszaadja a számított/lekért értéket.</p>
   </div>
   <div class="space-y-4">
     <div class="bg-slate-100 text-slate-900 border border-slate-300 rounded-xl p-5">
-      <h3 class="text-xl font-bold text-[#1a2a5a] mt-0">Tárolt eljárás és tranzakció</h3>
+      <h3 class="text-xl font-bold text-[#1a2a5a] mt-0">Eljárás – műveletet végez</h3>
+      <p class="opacity-80">Eljárást önállóan hívunk. <code style="background-color:#1a2a5a;color:#fff;padding:0 0.25rem;border-radius:0.2rem">IN</code> bemenet, <code style="background-color:#1a2a5a;color:#fff;padding:0 0.25rem;border-radius:0.2rem">OUT</code> kimenet, <code style="background-color:#1a2a5a;color:#fff;padding:0 0.25rem;border-radius:0.2rem">IN OUT</code> be- és kimenet. Az <code style="background-color:#1a2a5a;color:#fff;padding:0 0.25rem;border-radius:0.2rem">OUT</code> paraméterbe az eljárás teszi az eredményt.</p>
 <pre v-pre class="text-slate-900 text-xs leading-snug">
-CREATE OR REPLACE PROCEDURE sp_szintlepes(
-  p_befogas_id IN NUMBER
+CREATE OR REPLACE PROCEDURE sp_edzo_stat(
+  p_id IN NUMBER,
+  p_nev OUT VARCHAR2,
+  p_db OUT NUMBER
 ) IS
 BEGIN
-  UPDATE befogasok SET szint = szint + 1
-  WHERE befogas_id = p_befogas_id;
-
-  IF SQL%ROWCOUNT = 0 THEN
-    DBMS_OUTPUT.PUT_LINE('Nincs ilyen befogás');
-  ELSE
-    COMMIT;
-  END IF;
+  SELECT nev INTO p_nev
+  FROM edzok WHERE edzo_id = p_id;
+  SELECT COUNT(*) INTO p_db
+  FROM befogasok WHERE edzo_id = p_id;
 END;
 /
 </pre>
-      <p class="mb-0 mt-2 opacity-80"><code style="background-color:#1a2a5a;color:#fff;padding:0 0.25rem;border-radius:0.2rem">SQL%ROWCOUNT</code> az utolsó DML által érintett sorok száma. Példakód a tananyag mintájára véglegesít; általános eljárásban a <code style="background-color:#1a2a5a;color:#fff;padding:0 0.25rem;border-radius:0.2rem">COMMIT</code>-ról a hívó döntsön, hogy több lépést egy tranzakcióban tarthasson.</p>
     </div>
     <div class="bg-white/5 p-5 rounded-xl border border-[#1a2a5a]/20">
-      <h3 class="text-xl font-bold text-[#1a2a5a] mt-0">Trigger – eseményre automatikusan fut</h3>
-      <p class="opacity-80"><code style="background-color:#1a2a5a;color:#fff;padding:0 0.25rem;border-radius:0.2rem">BEFORE</code> tipikusan ellenőrzésre, <code style="background-color:#1a2a5a;color:#fff;padding:0 0.25rem;border-radius:0.2rem">AFTER</code> naplózásra. <code style="background-color:#1a2a5a;color:#fff;padding:0 0.25rem;border-radius:0.2rem">FOR EACH ROW</code> esetén <code style="background-color:#1a2a5a;color:#fff;padding:0 0.25rem;border-radius:0.2rem">:OLD</code> a korábbi, <code style="background-color:#1a2a5a;color:#fff;padding:0 0.25rem;border-radius:0.2rem">:NEW</code> a beállítandó érték.</p>
+      <h3 class="text-lg font-bold text-[#1a2a5a] mt-0">Meghívás és ellenőrzés</h3>
+<pre v-pre class="text-slate-900 text-xs leading-snug">
+DECLARE
+  v_nev VARCHAR2(100);
+  v_db NUMBER;
+BEGIN
+  sp_edzo_stat(1, v_nev, v_db);
+  DBMS_OUTPUT.PUT_LINE(v_nev || ': ' || v_db);
+END;
+/
+</pre>
+      <p class="mb-0 mt-2 opacity-80">DML után <code style="background-color:#1a2a5a;color:#fff;padding:0 0.25rem;border-radius:0.2rem">SQL%ROWCOUNT</code> megadja az érintett sorok számát; 0 esetén nem talált sort az <code style="background-color:#1a2a5a;color:#fff;padding:0 0.25rem;border-radius:0.2rem">UPDATE</code>/<code style="background-color:#1a2a5a;color:#fff;padding:0 0.25rem;border-radius:0.2rem">DELETE</code>. A kurzor implicit attribútuma azonnal, a következő SQL előtt olvasandó ki.</p>
+    </div>
+  </div>
+</div>
+
+---
+
+::header::
+TRIGGEREK, NAPLÓZÁS ÉS TRANZAKCIÓK
+::default::
+
+<div class="grid grid-cols-2 gap-6 items-start text-sm">
+  <div class="space-y-4">
+    <div class="bg-slate-100 text-slate-900 border border-slate-300 rounded-xl p-5">
+      <h3 class="text-xl font-bold text-[#1a2a5a] mt-0">BEFORE – validálás</h3>
+      <p class="opacity-80">Az eseményt kiváltó DML előtt fut. Soronkénti triggerben a <code style="background-color:#1a2a5a;color:#fff;padding:0 0.25rem;border-radius:0.2rem">:OLD</code> korábbi, a <code style="background-color:#1a2a5a;color:#fff;padding:0 0.25rem;border-radius:0.2rem">:NEW</code> új értéket jelöli.</p>
 <pre v-pre class="text-slate-900 text-xs leading-snug">
 CREATE OR REPLACE TRIGGER trg_xp_vedelem
 BEFORE UPDATE OF tapasztalat_pont
@@ -1020,7 +1039,36 @@ BEGIN
 END;
 /
 </pre>
-      <p class="mb-0 mt-2 opacity-80">A triggerben ne adj ki <code style="background-color:#1a2a5a;color:#fff;padding:0 0.25rem;border-radius:0.2rem">COMMIT</code>-ot: az eseményt kiváltó utasítás tranzakciójának részeként fut.</p>
+      <p class="mb-0 mt-2 opacity-80">A <code style="background-color:#1a2a5a;color:#fff;padding:0 0.25rem;border-radius:0.2rem">RAISE_APPLICATION_ERROR</code> saját hibaüzenetet ad (kód: <code style="background-color:#1a2a5a;color:#fff;padding:0 0.25rem;border-radius:0.2rem">-20000 ... -20999</code>), és megállítja a módosítást. Teszteld hibás <code style="background-color:#1a2a5a;color:#fff;padding:0 0.25rem;border-radius:0.2rem">UPDATE</code>-tel, majd ellenőrizd <code style="background-color:#1a2a5a;color:#fff;padding:0 0.25rem;border-radius:0.2rem">SELECT</code>-tel az adatot.</p>
+    </div>
+  </div>
+  <div class="space-y-4">
+    <div class="bg-slate-100 text-slate-900 border border-slate-300 rounded-xl p-5">
+      <h3 class="text-xl font-bold text-[#1a2a5a] mt-0">AFTER – naplózás</h3>
+      <p class="opacity-80">Sikeres módosítás után fut. A trigger az eredeti utasítás része; a bejegyzést a DML-lel együtt lehet véglegesíteni vagy visszagörgetni.</p>
+<pre v-pre class="text-slate-900 text-xs leading-snug">
+CREATE OR REPLACE TRIGGER trg_szint_naplozas
+AFTER UPDATE OF szint ON befogasok
+FOR EACH ROW
+BEGIN
+  INSERT INTO naplo(esemeny_tipus, leiras, datum)
+  VALUES ('SZINTLÉPÉS',
+    'Befogás ' || :NEW.befogas_id ||
+    ': ' || :OLD.szint || ' -> ' || :NEW.szint,
+    SYSDATE);
+END;
+/
+</pre>
+      <p class="mb-0 mt-2 opacity-80">AFTER trigger jó naplózáshoz; BEFORE trigger ellenőrzéshez. Triggerből ne hívj <code style="background-color:#1a2a5a;color:#fff;padding:0 0.25rem;border-radius:0.2rem">COMMIT</code>/<code style="background-color:#1a2a5a;color:#fff;padding:0 0.25rem;border-radius:0.2rem">ROLLBACK</code>-ot.</p>
+    </div>
+    <div class="bg-white/5 p-5 rounded-xl border border-[#1a2a5a]/20">
+      <h3 class="text-lg font-bold text-[#1a2a5a] mt-0">Tranzakció lezárása</h3>
+      <ul class="space-y-2 opacity-80">
+        <li><strong>COMMIT</strong> – a DML véglegesítése. Ellenőrzés és sikeres művelet után.</li>
+        <li><strong>ROLLBACK</strong> – visszavonás a legutóbbi COMMIT-ig; <code style="background-color:#1a2a5a;color:#fff;padding:0 0.25rem;border-radius:0.2rem">SAVEPOINT</code>-tal részleges visszaállítás is lehet.</li>
+        <li>Oracle-ben a DDL (<code style="background-color:#1a2a5a;color:#fff;padding:0 0.25rem;border-radius:0.2rem">CREATE</code>, <code style="background-color:#1a2a5a;color:#fff;padding:0 0.25rem;border-radius:0.2rem">ALTER</code>, <code style="background-color:#1a2a5a;color:#fff;padding:0 0.25rem;border-radius:0.2rem">DROP</code>) implicit COMMIT-ot okoz; erre a ROLLBACK nem megoldás.</li>
+        <li>Tárolt eljárásban a COMMIT csak akkor legyen, ha a feladat ezt kéri. Újrafelhasználható eljárásnál általában a hívó kezelje a tranzakciót.</li>
+      </ul>
     </div>
   </div>
 </div>
