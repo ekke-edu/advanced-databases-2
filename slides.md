@@ -769,79 +769,258 @@ CSATLAKOZÁS
 ---
 
 ::header::
-PL/SQL PUSKALAP
+PL/SQL ALAPBLOKK ÉS VEZÉRLÉS
 ::default::
 
-<div class="grid grid-cols-2 gap-4 text-sm">
-  <div class="space-y-3">
-    <div class="bg-white/5 p-4 rounded-xl border border-[#1a2a5a]/20">
-      <h3 class="text-lg font-bold text-[#1a2a5a] m-0">Blokk és névkonvenció</h3>
-      <p class="mt-1 mb-2 opacity-80"><code>DECLARE</code> opcionális; ide kerülnek a deklarációk. A <code>BEGIN</code> kötelező, itt fut a logika. Az <code>EXCEPTION</code> kezeli a hibákat.</p>
-<pre v-pre class="text-slate-900 text-xs leading-snug bg-slate-100 rounded p-2">
-DECLARE
-  v_nev employees.last_name%TYPE;
-  e_sajat_hiba EXCEPTION;
-BEGIN
-  -- utasítások
-EXCEPTION
-  WHEN NO_DATA_FOUND THEN NULL;
-END;
-/
-</pre>
-      <p class="mt-2 mb-0 text-xs opacity-80"><strong>Szokásos prefixek (konvenció):</strong> <code>v_</code> változó, <code>p_</code> paraméter, <code>c_</code> kurzor, <code>e_</code> saját kivétel, <code>sp_</code> eljárás, <code>fn_</code> függvény, <code>trg_</code> trigger. Nem kötelező Oracle-szabály. A <code>%TYPE</code>/<code>%ROWTYPE</code> a tábla oszlop-/sorszerkezetét követi.</p>
+<div class="grid grid-cols-2 gap-6 items-start text-sm">
+  <div class="space-y-4">
+    <div class="bg-white/5 p-5 rounded-xl border border-[#1a2a5a]/20">
+      <h3 class="text-xl font-bold text-[#1a2a5a] mt-0">A blokk részei</h3>
+      <ul class="space-y-2 opacity-80">
+        <li><strong>DECLARE</strong> – opcionális deklarációk: változók, rekordok, kurzorok, saját kivételek.</li>
+        <li><strong>BEGIN</strong> – kötelező, itt jönnek a végrehajtható PL/SQL- és SQL-utasítások.</li>
+        <li><strong>EXCEPTION</strong> – opcionális hibakezelés; minden ág <code>WHEN ... THEN</code>.</li>
+        <li><strong>END;</strong> – lezárja a blokkot. A külön sorban álló <code>/</code> elküldi a blokkot SQL Developerből.</li>
+      </ul>
+      <p class="mt-3 mb-0 opacity-80"><strong>Kiíratás:</strong> futtatás előtt <code>SET SERVEROUTPUT ON;</code>, PL/SQL-ben <code>DBMS_OUTPUT.PUT_LINE(...);</code></p>
     </div>
-    <div class="bg-white/5 p-4 rounded-xl border border-[#1a2a5a]/20">
-      <h3 class="text-lg font-bold text-[#1a2a5a] m-0">SELECT INTO és kivételek</h3>
-      <p class="mt-1 mb-2 opacity-80"><code>SELECT ... INTO</code> pontosan egy sort vár: 0 sor → <code>NO_DATA_FOUND</code>, több sor → <code>TOO_MANY_ROWS</code>. A <code>NO_DATA_FOUND</code> beépített kivétel, nem kell deklarálni.</p>
-<pre v-pre class="text-slate-900 text-xs leading-snug bg-slate-100 rounded p-2">
-SELECT last_name INTO v_nev
-FROM employees WHERE employee_id = 100;
--- több soros feldolgozás: kurzor
-</pre>
-      <p class="mt-2 mb-0 text-xs opacity-80"><code>NO_DATA_FOUND</code> a kivétel neve; <code>%NOTFOUND</code> kurzorattribútum, amely a sikertelen <code>FETCH</code> után igaz. A <code>ROWS NOT FOUND</code> nem Oracle-kivétel.</p>
+    <div class="bg-white/5 p-5 rounded-xl border border-[#1a2a5a]/20">
+      <h3 class="text-xl font-bold text-[#1a2a5a] mt-0">Deklaráció és típusok</h3>
+      <ul class="space-y-2 opacity-80">
+        <li>Értékadás deklarációban: <code>:=</code>; szöveg összefűzése: <code>||</code>.</li>
+        <li><code>%TYPE</code> átveszi egy oszlop típusát; <code>%ROWTYPE</code> egy teljes sor mezőit.</li>
+        <li>Prefixkonvenció: <code>v_</code> változó, <code>p_</code> paraméter, <code>c_</code> kurzor, <code>e_</code> kivétel, <code>sp_</code> eljárás, <code>fn_</code> függvény, <code>trg_</code> trigger. Ezek elnevezési szokások, nem Oracle-kulcsszavak.</li>
+      </ul>
     </div>
   </div>
-  <div class="space-y-3">
-    <div class="bg-white/5 p-4 rounded-xl border border-[#1a2a5a]/20">
-      <h3 class="text-lg font-bold text-[#1a2a5a] m-0">Kurzor, eljárás, függvény</h3>
-<pre v-pre class="text-slate-900 text-xs leading-snug bg-slate-100 rounded p-2">
--- Egyszerű, automatikusan kezelt kurzor
-FOR r IN (SELECT employee_id, last_name
-          FROM employees) LOOP
-  DBMS_OUTPUT.PUT_LINE(r.last_name);
-END LOOP;
-
-CREATE OR REPLACE PROCEDURE sp_pelda(
-  p_id IN NUMBER) IS
+  <div class="bg-slate-100 text-slate-900 border border-slate-300 rounded-xl p-5">
+    <h3 class="text-xl font-bold text-[#1a2a5a] mt-0">Teljes névtelen blokk</h3>
+<pre v-pre class="text-slate-900 text-xs leading-snug">
+SET SERVEROUTPUT ON;
+DECLARE
+  v_xp edzok.tapasztalat_pont%TYPE;
 BEGIN
-  NULL; -- művelet
-END;
-/
+  SELECT tapasztalat_pont INTO v_xp
+  FROM edzok WHERE edzo_id = 1;
 
-CREATE OR REPLACE FUNCTION fn_pelda(
-  p_id IN NUMBER) RETURN NUMBER IS
-BEGIN
-  RETURN p_id;
+  IF v_xp &gt; 2000 THEN
+    DBMS_OUTPUT.PUT_LINE('Mester');
+  ELSIF v_xp &gt; 1000 THEN
+    DBMS_OUTPUT.PUT_LINE('Haladó');
+  ELSE
+    DBMS_OUTPUT.PUT_LINE('Kezdő');
+  END IF;
+
+  FOR i IN 1..3 LOOP
+    DBMS_OUTPUT.PUT_LINE('Kör: ' || i);
+  END LOOP;
+EXCEPTION
+  WHEN NO_DATA_FOUND THEN
+    DBMS_OUTPUT.PUT_LINE('Nincs ilyen edző');
 END;
 /
 </pre>
-      <p class="mt-1 mb-0 text-xs opacity-80">A kurzor több sort jár be; a <code>FOR r IN (SELECT ...)</code> automatikusan nyit, olvas és zár. Az eljárás műveletet végez; a függvény kötelezően értéket ad vissza (<code>RETURN</code>).</p>
+    <p class="mb-0 mt-3 text-sm opacity-80"><strong>Vezérlés:</strong> <code>IF / ELSIF / ELSE</code> feltételekhez, <code>CASE</code> több érték vizsgálatához. Ciklusok: <code>FOR</code> ismert tartományhoz, <code>WHILE</code> feltételes ismétléshez, <code>LOOP ... EXIT WHEN</code> saját kilépéshez.</p>
+  </div>
+</div>
+
+---
+
+::header::
+SELECT INTO ÉS KIVÉTELEK
+::default::
+
+<div class="grid grid-cols-2 gap-6 items-start text-sm">
+  <div class="space-y-4">
+    <div class="bg-white/5 p-5 rounded-xl border border-[#1a2a5a]/20">
+      <h3 class="text-xl font-bold text-[#1a2a5a] mt-0">Egy sort olvass be</h3>
+      <p class="opacity-80"><code>SELECT ... INTO</code> eredményét változóba vagy rekordba tölti. Pontosan egy sort kell visszaadnia. Több oszlophoz ugyanannyi célváltozó kell, azonos sorrendben; teljes sorhoz használható <code>%ROWTYPE</code>.</p>
+      <ul class="space-y-2 opacity-80">
+        <li>0 sor: <code>NO_DATA_FOUND</code></li>
+        <li>2 vagy több sor: <code>TOO_MANY_ROWS</code></li>
+      </ul>
+      <p class="mb-0 opacity-80">Ezek előre definiált Oracle-kivételek. A <code>NO_DATA_FOUND</code> az elnevezés; a „ROWS NOT FOUND” ei ole kivételnév.</p>
     </div>
-    <div class="bg-white/5 p-4 rounded-xl border border-[#1a2a5a]/20">
-      <h3 class="text-lg font-bold text-[#1a2a5a] m-0">Tranzakció és trigger</h3>
-      <p class="mt-1 mb-2 opacity-80"><strong>COMMIT:</strong> a DML-módosítások véglegesítése. Akkor használd, ha ellenőrizted az eredményt. <strong>ROLLBACK:</strong> visszavonás a legutóbbi <code>COMMIT</code>/<code>SAVEPOINT</code> óta; hiba esetén vagy ellenőrzés előtt. Oracle-ben a DDL általában implicit <code>COMMIT</code>-tal jár. Újrafelhasználható eljárásban a tranzakció lezárását többnyire bízd a hívóra.</p>
-<pre v-pre class="text-slate-900 text-xs leading-snug bg-slate-100 rounded p-2">
-CREATE OR REPLACE TRIGGER trg_pelda
-BEFORE UPDATE ON employees
-FOR EACH ROW
+    <div class="bg-white/5 p-5 rounded-xl border border-[#1a2a5a]/20">
+      <h3 class="text-xl font-bold text-[#1a2a5a] mt-0">Kivételkezelési minták</h3>
+      <ul class="space-y-2 opacity-80">
+        <li><code>WHEN NO_DATA_FOUND THEN ...</code> – nincs találat.</li>
+        <li><code>WHEN TOO_MANY_ROWS THEN ...</code> – nem egyedi feltétel vagy hibás feltevés.</li>
+        <li><code>WHEN OTHERS THEN ...</code> – csak utolsó ágként; naplózás után gyakran <code>RAISE;</code>-szal tovább kell dobni a hibát.</li>
+        <li>Saját kivétel: deklaráld <code>e_...</code> néven, váltsd ki <code>RAISE e_...;</code>-szal, kezeld a blokk végén.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="space-y-4">
+    <div class="bg-slate-100 text-slate-900 border border-slate-300 rounded-xl p-5">
+      <h3 class="text-xl font-bold text-[#1a2a5a] mt-0">SELECT INTO + hibakezelés</h3>
+<pre v-pre class="text-slate-900 text-xs leading-snug">
+DECLARE
+  v_nev pokemonok.nev%TYPE;
 BEGIN
-  IF :NEW.salary < :OLD.salary THEN
-    RAISE_APPLICATION_ERROR(-20001, 'Hibás érték');
+  SELECT nev INTO v_nev
+  FROM pokemonok WHERE id = 999;
+
+  DBMS_OUTPUT.PUT_LINE(v_nev);
+EXCEPTION
+  WHEN NO_DATA_FOUND THEN
+    DBMS_OUTPUT.PUT_LINE('Nincs ilyen Pokemon');
+  WHEN TOO_MANY_ROWS THEN
+    DBMS_OUTPUT.PUT_LINE('Adj meg egyedi feltételt');
+END;
+/
+</pre>
+    </div>
+    <div class="bg-slate-100 text-slate-900 border border-slate-300 rounded-xl p-5">
+      <h3 class="text-xl font-bold text-[#1a2a5a] mt-0">Saját hiba és üzleti szabály</h3>
+<pre v-pre class="text-slate-900 text-xs leading-snug">
+IF v_hp &lt; 0 THEN
+  RAISE_APPLICATION_ERROR(
+    -20001, 'A HP nem lehet negatív'
+  );
+END IF;
+</pre>
+      <p class="mb-0 mt-2 opacity-80">Saját alkalmazáshibához a kód tartománya <code>-20000 ... -20999</code>. A hibát a hívó is megkapja; triggerben ezzel lehet megakadályozni a szabályt sértő módosítást.</p>
+    </div>
+  </div>
+</div>
+
+---
+
+::header::
+KURZOROK ÉS TÖBBSOROS FELDOLGOZÁS
+::default::
+
+<div class="grid grid-cols-2 gap-6 items-start text-sm">
+  <div class="space-y-4">
+    <div class="bg-white/5 p-5 rounded-xl border border-[#1a2a5a]/20">
+      <h3 class="text-xl font-bold text-[#1a2a5a] mt-0">Melyik megoldást válaszd?</h3>
+      <ul class="space-y-2 opacity-80">
+        <li>Egyetlen, egyedi sorhoz: <code>SELECT ... INTO</code>.</li>
+        <li>Több sorhoz: kurzor vagy közvetlen <code>FOR r IN (SELECT ...)</code> ciklus.</li>
+        <li>A kurzor lekérdezés eredményén lépked. A kurzor-FOR ciklus automatikusan nyitja, olvassa és zárja.</li>
+        <li>A <code>%NOTFOUND</code> kurzorattribútum, nem kivétel: <code>FETCH</code> után igaz, ha nincs új sor. Nem azonos a <code>NO_DATA_FOUND</code>-dal.</li>
+      </ul>
+    </div>
+    <div class="bg-slate-100 text-slate-900 border border-slate-300 rounded-xl p-5">
+      <h3 class="text-xl font-bold text-[#1a2a5a] mt-0">Egyszerű kurzor-FOR ciklus</h3>
+<pre v-pre class="text-slate-900 text-xs leading-snug">
+DECLARE
+  CURSOR c_pokemonok IS
+    SELECT nev, tipus FROM pokemonok;
+BEGIN
+  FOR r IN c_pokemonok LOOP
+    DBMS_OUTPUT.PUT_LINE(
+      r.nev || ' - ' || r.tipus
+    );
+  END LOOP;
+END;
+/
+</pre>
+      <p class="mb-0 mt-2 opacity-80">Paraméteres kurzor: deklarációban például <code>CURSOR c_edzok(p_regio VARCHAR2) IS SELECT ... WHERE regio = p_regio;</code>, majd <code>FOR r IN c_edzok('Kanto') LOOP ...</code>.</p>
+    </div>
+  </div>
+  <div class="space-y-4">
+    <div class="bg-slate-100 text-slate-900 border border-slate-300 rounded-xl p-5">
+      <h3 class="text-xl font-bold text-[#1a2a5a] mt-0">Explicit kurzor: OPEN – FETCH – CLOSE</h3>
+<pre v-pre class="text-slate-900 text-xs leading-snug">
+OPEN c_pokemonok;
+LOOP
+  FETCH c_pokemonok INTO v_nev, v_tipus;
+  EXIT WHEN c_pokemonok%NOTFOUND;
+  DBMS_OUTPUT.PUT_LINE(v_nev);
+END LOOP;
+CLOSE c_pokemonok;
+</pre>
+      <p class="mb-0 mt-2 opacity-80">A kurzort előbb deklarálni kell; a <code>FETCH</code> célváltozóinak illeszkedniük kell a lekérdezés oszlopaihoz. Kilépés a <code>FETCH</code> után történik.</p>
+    </div>
+    <div class="bg-white/5 p-5 rounded-xl border border-[#1a2a5a]/20">
+      <h3 class="text-xl font-bold text-[#1a2a5a] mt-0">Zárolás és WHERE CURRENT OF</h3>
+      <p class="opacity-80">Ha a beolvasott sorokat módosítod, a kurzor lekérdezésébe tehetsz <code>FOR UPDATE</code>-et. A sorok a tranzakció lezárásáig zároltak.</p>
+<pre v-pre class="text-slate-900 text-xs leading-snug">
+CURSOR c_norm IS
+  SELECT alap_hp FROM pokemonok
+  WHERE tipus = 'Normál' FOR UPDATE;
+
+-- a ciklusban:
+UPDATE pokemonok SET alap_hp = alap_hp + 10
+WHERE CURRENT OF c_norm;
+</pre>
+      <p class="mb-0 opacity-80">A módosítás végén <code>COMMIT</code> véglegesít, <code>ROLLBACK</code> visszavonja. A kurzor-FOR ciklus a kezelés nagy részét automatikussá teszi.</p>
+    </div>
+  </div>
+</div>
+
+---
+
+::header::
+TÁROLT ALPROGRAMOK ÉS TRIGGEREK
+::default::
+
+<div class="grid grid-cols-2 gap-6 items-start text-sm">
+  <div class="space-y-4">
+    <div class="bg-slate-100 text-slate-900 border border-slate-300 rounded-xl p-5">
+      <h3 class="text-xl font-bold text-[#1a2a5a] mt-0">Tárolt függvény</h3>
+      <p class="opacity-80">Értéket ad vissza: meg kell adni a <code>RETURN adattípus</code>-t, és minden sikeres útvonalon legyen <code>RETURN érték;</code>. Tesztelhető például SQL-lekérdezésben, ha a függvény nem végez tiltott mellékhatású műveletet.</p>
+<pre v-pre class="text-slate-900 text-xs leading-snug">
+CREATE OR REPLACE FUNCTION fn_edzo_xp(
+  p_edzo_id IN NUMBER
+) RETURN NUMBER IS
+  v_xp edzok.tapasztalat_pont%TYPE;
+BEGIN
+  SELECT tapasztalat_pont INTO v_xp
+  FROM edzok WHERE edzo_id = p_edzo_id;
+  RETURN v_xp;
+EXCEPTION
+  WHEN NO_DATA_FOUND THEN RETURN 0;
+END;
+/
+
+SELECT fn_edzo_xp(1) FROM DUAL;
+</pre>
+    </div>
+    <div class="bg-white/5 p-5 rounded-xl border border-[#1a2a5a]/20">
+      <h3 class="text-xl font-bold text-[#1a2a5a] mt-0">Paraméterek</h3>
+      <p class="mb-0 opacity-80"><code>IN</code> bemenet (alapértelmezett), <code>OUT</code> visszaadott érték, <code>IN OUT</code> be- és kimenet. <code>OUT</code>-hoz a hívó blokkban változót adj át. Függvény értéket ad; eljárást önállóan hívunk, például <code>BEGIN sp_pelda(...); END;</code>.</p>
+    </div>
+  </div>
+  <div class="space-y-4">
+    <div class="bg-slate-100 text-slate-900 border border-slate-300 rounded-xl p-5">
+      <h3 class="text-xl font-bold text-[#1a2a5a] mt-0">Tárolt eljárás és tranzakció</h3>
+<pre v-pre class="text-slate-900 text-xs leading-snug">
+CREATE OR REPLACE PROCEDURE sp_szintlepes(
+  p_befogas_id IN NUMBER
+) IS
+BEGIN
+  UPDATE befogasok SET szint = szint + 1
+  WHERE befogas_id = p_befogas_id;
+
+  IF SQL%ROWCOUNT = 0 THEN
+    DBMS_OUTPUT.PUT_LINE('Nincs ilyen befogás');
+  ELSE
+    COMMIT;
   END IF;
 END;
 /
 </pre>
-      <p class="mt-1 mb-0 text-xs opacity-80">A trigger INSERT/UPDATE/DELETE eseményre automatikusan fut. Sorszintű triggerben <code>:OLD</code> a régi, <code>:NEW</code> az új érték; ellenőrzésre <code>BEFORE</code>, naplózásra gyakran <code>AFTER</code>.</p>
+      <p class="mb-0 mt-2 opacity-80"><code>SQL%ROWCOUNT</code> az utolsó DML által érintett sorok száma. Példakód a tananyag mintájára véglegesít; általános eljárásban a <code>COMMIT</code>-ról a hívó döntsön, hogy több lépést egy tranzakcióban tarthasson.</p>
+    </div>
+    <div class="bg-white/5 p-5 rounded-xl border border-[#1a2a5a]/20">
+      <h3 class="text-xl font-bold text-[#1a2a5a] mt-0">Trigger – eseményre automatikusan fut</h3>
+      <p class="opacity-80"><code>BEFORE</code> tipikusan ellenőrzésre, <code>AFTER</code> naplózásra. <code>FOR EACH ROW</code> esetén <code>:OLD</code> a korábbi, <code>:NEW</code> a beállítandó érték.</p>
+<pre v-pre class="text-slate-900 text-xs leading-snug">
+CREATE OR REPLACE TRIGGER trg_xp_vedelem
+BEFORE UPDATE OF tapasztalat_pont
+ON edzok FOR EACH ROW
+BEGIN
+  IF :NEW.tapasztalat_pont &lt; 0 THEN
+    RAISE_APPLICATION_ERROR(-20001,
+      'XP nem lehet negatív');
+  END IF;
+END;
+/
+</pre>
+      <p class="mb-0 mt-2 opacity-80">A triggerben ne adj ki <code>COMMIT</code>-ot: az eseményt kiváltó utasítás tranzakciójának részeként fut.</p>
     </div>
   </div>
 </div>
