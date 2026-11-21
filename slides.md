@@ -769,11 +769,91 @@ CSATLAKOZÁS
 ---
 
 ::header::
+PL/SQL PUSKALAP
+::default::
+
+<div class="grid grid-cols-2 gap-4 text-sm">
+  <div class="space-y-3">
+    <div class="bg-white/5 p-4 rounded-xl border border-[#1a2a5a]/20">
+      <h3 class="text-lg font-bold text-[#1a2a5a] m-0">Blokk és névkonvenció</h3>
+      <p class="mt-1 mb-2 opacity-80"><code>DECLARE</code> opcionális; ide kerülnek a deklarációk. A <code>BEGIN</code> kötelező, itt fut a logika. Az <code>EXCEPTION</code> kezeli a hibákat.</p>
+<pre v-pre class="text-slate-900 text-xs leading-snug bg-slate-100 rounded p-2">
+DECLARE
+  v_nev employees.last_name%TYPE;
+  e_sajat_hiba EXCEPTION;
+BEGIN
+  -- utasítások
+EXCEPTION
+  WHEN NO_DATA_FOUND THEN NULL;
+END;
+/
+</pre>
+      <p class="mt-2 mb-0 text-xs opacity-80"><strong>Szokásos prefixek (konvenció):</strong> <code>v_</code> változó, <code>p_</code> paraméter, <code>c_</code> kurzor, <code>e_</code> saját kivétel, <code>sp_</code> eljárás, <code>fn_</code> függvény, <code>trg_</code> trigger. Nem kötelező Oracle-szabály. A <code>%TYPE</code>/<code>%ROWTYPE</code> a tábla oszlop-/sorszerkezetét követi.</p>
+    </div>
+    <div class="bg-white/5 p-4 rounded-xl border border-[#1a2a5a]/20">
+      <h3 class="text-lg font-bold text-[#1a2a5a] m-0">SELECT INTO és kivételek</h3>
+      <p class="mt-1 mb-2 opacity-80"><code>SELECT ... INTO</code> pontosan egy sort vár: 0 sor → <code>NO_DATA_FOUND</code>, több sor → <code>TOO_MANY_ROWS</code>. A <code>NO_DATA_FOUND</code> beépített kivétel, nem kell deklarálni.</p>
+<pre v-pre class="text-slate-900 text-xs leading-snug bg-slate-100 rounded p-2">
+SELECT last_name INTO v_nev
+FROM employees WHERE employee_id = 100;
+-- több soros feldolgozás: kurzor
+</pre>
+      <p class="mt-2 mb-0 text-xs opacity-80"><code>NO_DATA_FOUND</code> a kivétel neve; <code>%NOTFOUND</code> kurzorattribútum, amely a sikertelen <code>FETCH</code> után igaz. A <code>ROWS NOT FOUND</code> nem Oracle-kivétel.</p>
+    </div>
+  </div>
+  <div class="space-y-3">
+    <div class="bg-white/5 p-4 rounded-xl border border-[#1a2a5a]/20">
+      <h3 class="text-lg font-bold text-[#1a2a5a] m-0">Kurzor, eljárás, függvény</h3>
+<pre v-pre class="text-slate-900 text-xs leading-snug bg-slate-100 rounded p-2">
+-- Egyszerű, automatikusan kezelt kurzor
+FOR r IN (SELECT employee_id, last_name
+          FROM employees) LOOP
+  DBMS_OUTPUT.PUT_LINE(r.last_name);
+END LOOP;
+
+CREATE OR REPLACE PROCEDURE sp_pelda(
+  p_id IN NUMBER) IS
+BEGIN
+  NULL; -- művelet
+END;
+/
+
+CREATE OR REPLACE FUNCTION fn_pelda(
+  p_id IN NUMBER) RETURN NUMBER IS
+BEGIN
+  RETURN p_id;
+END;
+/
+</pre>
+      <p class="mt-1 mb-0 text-xs opacity-80">A kurzor több sort jár be; a <code>FOR r IN (SELECT ...)</code> automatikusan nyit, olvas és zár. Az eljárás műveletet végez; a függvény kötelezően értéket ad vissza (<code>RETURN</code>).</p>
+    </div>
+    <div class="bg-white/5 p-4 rounded-xl border border-[#1a2a5a]/20">
+      <h3 class="text-lg font-bold text-[#1a2a5a] m-0">Tranzakció és trigger</h3>
+      <p class="mt-1 mb-2 opacity-80"><strong>COMMIT:</strong> a DML-módosítások véglegesítése. Akkor használd, ha ellenőrizted az eredményt. <strong>ROLLBACK:</strong> visszavonás a legutóbbi <code>COMMIT</code>/<code>SAVEPOINT</code> óta; hiba esetén vagy ellenőrzés előtt. Oracle-ben a DDL általában implicit <code>COMMIT</code>-tal jár. Újrafelhasználható eljárásban a tranzakció lezárását többnyire bízd a hívóra.</p>
+<pre v-pre class="text-slate-900 text-xs leading-snug bg-slate-100 rounded p-2">
+CREATE OR REPLACE TRIGGER trg_pelda
+BEFORE UPDATE ON employees
+FOR EACH ROW
+BEGIN
+  IF :NEW.salary < :OLD.salary THEN
+    RAISE_APPLICATION_ERROR(-20001, 'Hibás érték');
+  END IF;
+END;
+/
+</pre>
+      <p class="mt-1 mb-0 text-xs opacity-80">A trigger INSERT/UPDATE/DELETE eseményre automatikusan fut. Sorszintű triggerben <code>:OLD</code> a régi, <code>:NEW</code> az új érték; ellenőrzésre <code>BEFORE</code>, naplózásra gyakran <code>AFTER</code>.</p>
+    </div>
+  </div>
+</div>
+
+---
+
+::header::
 Zárthelyi dolgozat
 ::default::
 <div class="grid grid-cols-2 gap-8 items-center">
   <div>
-    <p class="opacity-80">Feladatok:</p>
+    <p class="opacity-80"><strong>Online ZH alkalmak:</strong> 2026.12.09., 2026.12.16. és 2026.12.23. – online, a Teams-csoportban.</p><p class="opacity-80 mt-3">Feladatok:</p>
     <img src="/assets/github_instructions/cat.jpg" class="h-[100%] w-full filter" />
   </div>  
 </div>
